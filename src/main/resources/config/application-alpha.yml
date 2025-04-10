@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
+
+info:
+  version: @project.version@
+  app:
+    url: localhost:8081
+
+management:
+  endpoint:
+    logfile:
+      external-file: /${user.home}/${spring.application.name}.log
+
+logging:
+  file:
+    name: /${user.home}/${spring.application.name}.log
