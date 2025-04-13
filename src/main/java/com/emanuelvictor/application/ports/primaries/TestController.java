@@ -12,7 +12,7 @@ public class TestController {
         return "Este endpoint é público!";
     }
 
-    @PreAuthorize("hasAuthority('SCOPE_leitura')")
+    @PreAuthorize("hasAnyAuthority('root')")
     @GetMapping("/api/seguro")
     public String protegido() {
         return "Você acessou um endpoint protegido com sucesso!";

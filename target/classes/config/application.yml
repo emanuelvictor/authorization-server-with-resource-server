@@ -56,13 +56,6 @@ spring:
           sharedCache:
             mode: ALL
 
-#  #STATIC RESOURCES
-#  resources.static-locations: classpath:/META-INF/resources/
-#  resources.chain:
-#    cache: false
-#    strategy.content.enabled: true
-#    strategy.content.paths: /**
-
   #THYMELEAF
   thymeleaf:
     mode: HTML
@@ -77,56 +70,20 @@ spring:
     baseline-on-migrate: true
     baseline-version: 0
     fail-on-missing-locations: true
-#
-#  thymeleaf:
-#    enabled: true
-#    cache: false
-#    check-template: true
-#    check-template-location: true
 
-#  http:
-#    encoding:
-#      charset: UTF-8
-#      enabled: true
-#      force: true
 
-#server:
-#  servlet:
-#    session:
-#      persistent: false
-
-management:
-  health:
-    ldap:
-      enabled: false
-  endpoints:
-    enabled-by-default: true
-    web:
-      exposure:
-        include: ['health', 'info', 'flyway' , 'logfile']
-  endpoint:
-    health:
-      enabled: true
-    info:
-      enabled: true
-    flyway:
-      enabled: true
-    logfile:
-      enabled: true
-      external-file: /var/log/${spring.application.name}/${spring.application.name}.log
-
-logging:
-  level:
-    root: DEBUG
-    org.hibernate: DEBUG
-    org.springframework: DEBUG
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.context.support: DEBUG
-    org.springframework.security.oauth2: DEBUG
-    org.springframework.security.oauth2.server.authorization: DEBUG
-    org.springframework.security.oauth2.jwt: DEBUG
-    org.apache.coyote.http11: DEBUG
+#logging:
+#  level:
+#    root: DEBUG
+#    org.hibernate: DEBUG
+#    org.springframework: DEBUG
+#    org.springframework.web: DEBUG
+#    org.springframework.security: DEBUG
+#    org.springframework.context.support: DEBUG
+#    org.springframework.security.oauth2: DEBUG
+#    org.springframework.security.oauth2.server.authorization: DEBUG
+#    org.springframework.security.oauth2.jwt: DEBUG
+#    org.apache.coyote.http11: DEBUG
 
 info:
   name: auth-resource-server

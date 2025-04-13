@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$/../microservices/clients/access-manager" libraries="{access-manager/node_modules}" />
+    <file url="file://$PROJECT_DIR$/../overtakr/client/access-manager" libraries="{access-manager/node_modules}" />
+  </component>
+</project>

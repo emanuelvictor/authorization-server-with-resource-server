@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -28,9 +29,6 @@ public class Group extends PersistentEntity {
     @Length(max = 50)
     @Column(nullable = false, unique = true, length = 50)
     private String name;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "group")
-    private Set<GroupPermission> groupPermissions;
 
     public Group(Long id, String name) {
         super(id);

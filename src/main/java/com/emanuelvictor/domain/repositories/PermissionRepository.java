@@ -44,7 +44,6 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
                                    final Pageable pageable);
 
     /**
-     * Fixme must create unit tests
      *
      * @param upperPermissionId Long
      * @param pageable          Pageable
@@ -53,7 +52,6 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
     Page<Permission> findByUpperPermissionId(final Long upperPermissionId, final Pageable pageable);
 
     /**
-     *  TODO make tests
      * @param authority String
      * @return Optional<Permission>
      */
