@@ -1,0 +1,86 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "system": {
+      "root": "system",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "system",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "src/system/index.html",
+            "main": "src/system/application/system-main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/system/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "./node_modules/@covalent/core/common/platform.scss",
+              "src/system/application/system-theme.scss",
+              "./node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+              "src/assets/styles/nprogress.css",
+              "src/assets/styles/ev-datepicker.scss"
+            ],
+            "scripts": [
+              "src/assets/scripts/nprogress.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "system:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "system:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "system:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [],
+            "exclude": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "system",
+  "cli": {
+    "analytics": "1cee4484-104d-46ed-8289-372e87fe44cf"
+  }
+}

@@ -1,0 +1,37 @@
+<div class='toolbar' layout='row' flex>
+  <div layout='column'>
+    <div class='headline' [innerHTML]='homeView.toolbar.headline'></div>
+    <div class='subhead' [innerHTML]='homeView.toolbar.subhead'></div>
+  </div>
+  <div layout='row' layout-align='end center' flex>
+    <button mat-raised-button type='button' color='accent' routerLink='../'>
+      <mat-icon>arrow_back</mat-icon>
+      <span>Voltar</span>
+    </button>
+    <a color='primary' routerLink='edit'
+       class='ml-25' mat-raised-button type='button'
+       *hasPermission="['root', 'root.access-manager' , 'root.access-manager.applications',
+       'root.access-manager.applications.update']; operation 'OR'">
+      <mat-icon>edit</mat-icon>
+      <span>Editar</span>
+    </a>
+  </div>
+</div>
+<mat-card id='default-form'>
+  <div layout='row' layout-sm='column' layout-xs='column'>
+    <div layout='column' flex>
+      <label class='title'>Nome de Aplicativo:</label>
+      <label class='text' *ngIf='application?.clientId'>{{ application?.clientId }}</label>
+      <label class='text' *ngIf='!application?.clientId'>-</label>
+    </div>
+  </div>
+  <vertical-space></vertical-space>
+  <access-group-data-view *ngIf='application?.group?.name' [group]='application?.group' [readOnly]='true'>
+    <div accessGroupLabelName layout="row" *ngIf='application?.group?.name'>
+      <div layout="column" flex>
+        <label class="title">Grupo de Acesso:</label>
+        <label class="text">{{ application?.group?.name }}</label>
+      </div>
+    </div>
+  </access-group-data-view>
+</mat-card>

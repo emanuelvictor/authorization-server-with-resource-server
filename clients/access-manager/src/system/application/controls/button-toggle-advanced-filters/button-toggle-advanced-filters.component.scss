@@ -1,0 +1,11 @@
+@import '../../../../theme.scss';
+
+.btn-advanced-filters {
+    border: 1px solid #cecece;
+    font-size: 13px;
+}
+
+.btn-advanced-filters-active {
+    border: 1px solid $primaryColor;
+    color: $primaryColor !important;
+}

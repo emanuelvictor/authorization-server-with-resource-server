@@ -1,0 +1,7 @@
+<ng-content select="[accessGroupLabelName]"></ng-content>
+
+<vertical-space></vertical-space>
+
+<tree-permissions-view *ngIf='rootPermission?.id' [readOnly]='readOnly'
+                       [group]='group' [upperPermission]='rootPermission'>
+</tree-permissions-view>

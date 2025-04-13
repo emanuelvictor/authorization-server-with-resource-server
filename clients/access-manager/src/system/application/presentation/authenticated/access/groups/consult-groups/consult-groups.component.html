@@ -1,0 +1,19 @@
+<list-page [gender]="'M'"
+           [deletavel]='true'
+           [desativavel]='false'
+           [hasAdvancedFilter]='false'
+           [columns]="columns"
+           [dataSource]="dataSource"
+           [headline]="'Configurações'"
+           [subhead]="'Grupos de Acesso'"
+           (list)="listByFilters($event)"
+           [totalElements]="totalElements"
+           [pageSize]="pageSize"
+           [pageIndex]="pageIndex"
+           [rolesToAdd]="['root', 'groups', 'groups/post']"
+           [rolesToView]="['root', 'groups', 'groups/get']"
+           [rolesToEdit]="['root', 'groups', 'groups/put']"
+           [rolesToDelete]="['root', 'groups', 'groups/delete']"
+           (delete)="openDeleteDialog($event)"
+           [displayedColumns]="displayedColumns">
+</list-page>

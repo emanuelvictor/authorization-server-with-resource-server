@@ -1,0 +1,35 @@
+<div layout="column" layout-align="center center" id="login">
+  <mat-card style='border-radius: 0'>
+    <mat-card-content>
+      <form #signinForm="ngForm" (ngSubmit)="login()">
+        <div layout="column">
+          <div layout="row" layout-align="center center">
+<!--            <img [src]="'../../../assets/images/logo.png'" class="image-logo" alt="Logo">-->
+          </div>
+          <div layout="column" class="pad-top">
+            <div layout="row">
+              <mat-form-field flex>
+                <mat-label>Usuário</mat-label>
+                <input matInput required name="email" placeholder="Login" [(ngModel)]="user.email" autofocus/>
+                <mat-icon matSuffix>supervisor_account</mat-icon>
+              </mat-form-field>
+            </div>
+            <div layout="row">
+              <mat-form-field flex>
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput placeholder="Senha" [(ngModel)]="user.senha" required name="senha"/>
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+          <div layout="column" layout-align="end center" class="pad-top" flex>
+            <button mat-raised-button type="submit">
+              Entrar
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div id="bottom"></div>

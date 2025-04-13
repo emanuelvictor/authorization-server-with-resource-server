@@ -1,0 +1,25 @@
+ev-datepicker {
+
+  mat-form-field {
+    .mat-form-field-wrapper {
+      .mat-form-field-suffix {
+        z-index: 300 !important;
+        margin-right: -9px;
+      }
+    }
+  }
+
+  // Referente ao datepicker
+  #date-filters {
+    margin-right: 5px;
+    margin-bottom: -62px;
+
+    .mat-form-field-underline {
+      height: 0 !important;
+    }
+
+    .mat-form-field-outline {
+      display: none;
+    }
+  }
+}

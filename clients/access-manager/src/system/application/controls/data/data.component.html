@@ -1,0 +1,18 @@
+<a
+    [matTooltipPosition]="'below'" [ngStyle]="colors ? colors[display] : ''"
+    ellipsis *ngIf="!type || type === 'NORMAL'"
+    matTooltip="{{ translate ? (display | translate) || '-' : (display || '-')  }}">
+  {{ translate ? (display | translate) || '-' : (display || '-')  }}
+</a>
+<a [matTooltipPosition]="'below'"
+   ellipsis *ngIf="type === 'DATE'"
+   [ngStyle]="colors ? colors[display] : ''"
+   matTooltip="{{display | date : 'dd/MM/yyyy'}}">
+  {{ display | date : 'dd/MM/yyyy'}}
+</a>
+<mat-chip-list *ngIf="type === 'CHIP'">
+  <mat-chip ellipsis [matTooltipPosition]="'below'" [ngStyle]="colors ? colors[display] : ''"
+            matTooltip="{{ translate ? (display | translate) || '-' : (display || '-')  }}">
+    {{ translate ? (display | translate) || '-' : (display || '-')  }}
+  </mat-chip>
+</mat-chip-list>

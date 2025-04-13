@@ -1,0 +1,18 @@
+<application-form [entity]='application' *ngIf='application?.id' (save)='save($event)'>
+  <div class='toolbar' layout='row' flex toolbar>
+    <div layout='column'>
+      <div class='headline' [innerHTML]="'Aplicativo'"></div>
+      <div class='subhead' [innerHTML]="'Aplicativo / Editar'"></div>
+    </div>
+    <div layout='row' layout-align='end center' flex>
+      <button mat-raised-button type='button' (click)='back()'>
+        <mat-icon>arrow_back</mat-icon>
+        <span>Voltar</span>
+      </button>
+      <button mat-raised-button color='primary' class='ml-25'>
+        <mat-icon>save</mat-icon>
+        <span>Salvar</span>
+      </button>
+    </div>
+  </div>
+</application-form>

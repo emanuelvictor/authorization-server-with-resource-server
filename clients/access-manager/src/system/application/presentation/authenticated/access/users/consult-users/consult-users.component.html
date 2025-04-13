@@ -1,0 +1,17 @@
+<list-page [gender]="'M'"
+           [deletavel]='false'
+           [columns]="columns"
+           [dataSource]="dataSource"
+           [headline]="'Configurações'"
+           [subhead]="'Usuários'"
+           (list)='listByFilters($event)'
+           [totalElements]="totalElements"
+           [pageSize]="pageSize"
+           [pageIndex]="pageIndex"
+           [rolesToAdd]="['root', 'users', 'users/post']"
+           [rolesToView]="['root', 'users', 'users/get']"
+           [rolesToEdit]="['root', 'users', 'users/put']"
+           [rolesToDelete]="['root', 'users', 'users/delete']"
+           (delete)="openDeleteDialog($event)"
+           [displayedColumns]="displayedColumns">
+</list-page>

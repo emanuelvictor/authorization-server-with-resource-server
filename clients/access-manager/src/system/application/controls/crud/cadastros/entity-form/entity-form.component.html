@@ -1,0 +1,21 @@
+<form [formGroup]='form' (ngSubmit)='save(form)'>
+
+  <sistema-form-toolbar [headline]="headline" [subhead]="subhead"></sistema-form-toolbar>
+
+  <mat-card id="primary-form">
+    <div layout="row">
+      <mat-form-field flex class="height-50">
+        <mat-label>{{data.label}}:</mat-label>
+        <input [formControlName]='data.name' required id='{{data.name}}' name='{{data.name}}' matInput
+          placeholder="{{data.label}}" name="{{data.name}}" [(ngModel)]="entity[data.name]"/>
+        <mat-error>
+          Esse campo é obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <horizontal-space></horizontal-space>
+
+    </div>
+  </mat-card>
+
+</form>

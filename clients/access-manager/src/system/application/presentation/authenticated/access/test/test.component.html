@@ -1,0 +1,19 @@
+<div class='toolbar' layout='row' flex >
+    <div layout='column'>
+        <div class='headline' [innerHTML]="'Teste'"></div>
+        <div class='subhead' [innerHTML]="'Teste de permissionamento'"></div>
+    </div>
+</div>
+<div layout='row' layout-align='center center' flex>
+    <button mat-raised-button color='primary' (click)="getAuthorizedAccess()">
+        <span>Get v1/api</span>
+    </button>
+    <horizontal-space></horizontal-space>
+    <button mat-raised-button color='primary' (click)="tryForbiddenAccess()">
+        <span>Get v1/api/not-access</span>
+    </button>
+    <horizontal-space></horizontal-space>
+    <button mat-raised-button color='primary' (click)="getPublicAccess()">
+        <span>Get v1/api/public-access</span>
+    </button>
+</div>

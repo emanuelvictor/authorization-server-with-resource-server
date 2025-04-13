@@ -1,0 +1,70 @@
+@import 'src/system/application/presentation/system.component';
+
+#login {
+  height: 50%;
+  background: $blueColor;
+
+  #custom-card-size {
+    height: 30%;
+  }
+
+  mat-card {
+    // Centralizar o card dinamicamente
+    position: fixed;
+    top: 25%;
+
+    width: 360px;
+    border-radius: 5px;
+    padding: 30px;
+
+    mat-card-content,
+    form,
+    form>div {
+      height: 100%;
+    }
+
+    mat-card-content {
+      padding: 0;
+      font-size: 13px;
+
+      form {
+        .image-logo {
+          height: 93px;
+        }
+
+        label.mat-form-field-label,
+        mat-icon {
+          color: #707070 !important;
+        }
+
+        mat-icon {
+          font-size: 14px;
+        }
+
+        button {
+          background: $blueColor;
+          color: #FFF;
+          width: 120px;
+          font-size: 13px;
+        }
+
+        .esqueceu-sua-senha {
+          text-align: center;
+          text-decoration: none;
+          font-size: 12px;
+          color: #707070;
+        }
+      }
+    }
+  }
+}
+
+#bottom {
+  height: 50%;
+  background: #F8F9FE;
+}
+
+input#mat-input-0 {
+  margin-top: -5px !important;
+  height: 23px;
+}

@@ -1,0 +1,439 @@
+@import '../../theme';
+
+mat-cell {
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+}
+
+mat-header-cell {
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+}
+
+.main-content {
+  padding: 60px 40px;
+}
+
+.mat-stepper-horizontal,
+.mat-stepper-vertical {
+  border-radius: 4px !important;
+}
+
+.stepper-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4C4C4C;
+  margin-bottom: 15px;
+  padding-top: 25px;
+}
+
+.mat-datepicker-toggle {
+  .mat-icon-button {
+    top: 5px;
+  }
+}
+
+// FORMULARIO
+mat-card {
+  margin: 0 !important;
+  padding: 30px !important;
+  border-radius: 4px !important;
+  border-top: 3px solid $primaryColor !important;
+
+  .checkbox-group {
+    font-size: 13px !important;
+    margin: 0 10px !important;
+
+    mat-checkbox {
+      .mat-checkbox-inner-container {
+        width: 18px !important;
+        height: 18px !important;
+      }
+    }
+  }
+
+  .checkbox-group:first-child {
+    margin-left: 0 !important;
+  }
+
+  .checkbox-group:last-child {
+    margin-right: 0 !important;
+  }
+
+  mat-radio-group {
+    font-size: 13px !important;
+    margin: 5px 0 !important;
+
+    mat-radio-button {
+      margin: 0 10px !important;
+    }
+
+    mat-radio-button:first-child {
+      margin-left: 0 !important;
+    }
+
+    mat-radio-button:last-child {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+mat-horizontal-stepper {
+  border-top: 3px solid $blueColor;
+
+  .mat-horizontal-stepper-header-container {
+    background-color: #F7F7F7 !important;
+  }
+
+  .mat-step-optional.ng-star-inserted {
+    padding-top: 6px;
+  }
+
+  .mat-step-icon {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.mat-form-field-label {
+  height: 25px !important;
+}
+
+.stepper-header {
+  font-size: 12px;
+  font-weight: bold;
+  color: #4C4C4C;
+  margin-bottom: 5px;
+}
+
+.stepper-label {
+  color: #4C4C4C;
+  font-size: 12px;
+}
+
+.nav-menu {
+  background: $blueColor;
+  width: 100%;
+  height: 34px;
+  position: fixed;
+  z-index: 3000
+}
+
+//.mat-chip-list-wrapper .mat-standard-chip, .mat-chip-list-wrapper input.mat-input-element {
+//margin: 1px !important;
+//margin-top: 4px !important;
+//margin-bottom: 4px !important;
+//}
+
+
+// .mat-form-field-outline {
+//     height: 40px;
+// }
+
+// ---- Configurações fantásticas da gaveta
+@media (min-width: 1025px) {
+
+  //.sistema-toolbar,
+  //mat-toolbar.mat-elevation-z2.sistema-toolbar.mat-toolbar.mat-toolbar-single-row {
+  //  position: fixed !important;
+  //}
+
+}
+
+.sistema-toolbar,
+mat-toolbar.mat-elevation-z2.sistema-toolbar.mat-toolbar.mat-toolbar-single-row {
+  position: fixed !important;
+}
+
+.nav-menu {
+  margin-top: 80px;
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.main-content {
+  margin-top: 80px;
+}
+
+.mat-drawer-inner-container {
+  overflow: hidden !important;
+}
+
+.mat-drawer-backdrop {
+  position: fixed !important;
+}
+
+mat-sidenav {
+  position: fixed !important;
+}
+
+mat-toolbar {
+  position: fixed !important;
+}
+
+// ---- Fim Configurações fantásticas da gaveta
+
+.form-actions {
+  margin: 20px -40px;;
+  border-top: solid 1px rgba(0, 0, 0, 0.12);
+  padding-top: 22px;
+
+  button {
+    margin-right: 40px;
+  }
+}
+
+//@media (min-width: 320px) and (max-width: 767px) {
+//
+//  mat-sidenav.mat-drawer.mat-sidenav.ng-tns-c8-1.ng-trigger.ng-trigger-transform.mat-drawer-over.ng-star-inserted {
+//    width: 70vw !important;
+//  }
+//
+//  .sistema-toolbar,
+//  mat-toolbar.mat-elevation-z2.sistema-toolbar.mat-toolbar.mat-toolbar-single-row {
+//    position: fixed !important;
+//  }
+//
+//  .mat-drawer-content {
+//    margin-top: 80px;
+//  }
+//
+//  .mat-drawer {
+//    position: fixed !important;
+//  }
+//
+//  .mat-drawer-backdrop {
+//    position: fixed !important;
+//  }
+//
+//  .mat-drawer-inner-container {
+//    h3 {
+//      word-wrap: break-word;
+//    }
+//  }
+//}
+
+
+.toolbar mat-form-field {
+  max-height: 43px !important;
+}
+
+.mat-toolbar {
+  padding: 20px 0;
+}
+
+.sistema-toolbar,
+mat-toolbar.mat-elevation-z2.sistema-toolbar.mat-toolbar.mat-toolbar-single-row {
+  top: 0;
+  z-index: 99;;
+  background-color: #FFFFFF !important;
+}
+
+mat-sidenav,
+.mat-drawer {
+  z-index: 100 !important;
+}
+
+.mat-form-field {
+  line-height: 1.3 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 6px 0 15px 0;
+}
+
+.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  transform: translateY(2%) !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-subscript-wrapper {
+  padding: 0 !important;
+}
+
+.mat-form-field-label-wrapper {
+  top: -16px;
+}
+
+.mat-button {
+  font-weight: 500 !important;
+}
+
+mat-toolbar.mat-elevation-z2.mat-toolbar.mat-toolbar-single-row {
+  height: 80px !important;
+}
+
+.ml-25 {
+  margin-left: 25px !important;
+}
+
+.mat-card:not([class*='mat-elevation-z']) {
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16) !important;
+  -moz-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16) !important;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16) !important;
+}
+
+#default-table mat-table mat-icon {
+  font-size: 20px !important;
+}
+
+.mat-icon-button .mat-icon,
+.mat-icon-button i {
+  line-height: 1 !important;
+}
+
+.header-button {
+  border-radius: 6px !important;
+  border: solid 1px #003D6A !important;
+  color: #003D6A !important;
+  font-size: 12px !important;
+
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.sistema-header {
+  a {
+    font-size: 16px !important;
+  }
+}
+
+.advanced-filters {
+  background: #fff;
+  margin: 0 !important;
+  padding: 24px 30px 10px 30px !important;
+  border-top: 3px solid #003d6a !important;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16) !important;
+  border-radius: 4px;
+}
+
+.mat-placeholder-required {
+  color: red !important;
+}
+
+input.mat-input-element {
+  margin-top: 0 !important;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 100 !important;
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.mat-dialog-container {
+  border-radius: 6px !important;
+  border-top: none !important;
+}
+
+.btn-voltar {
+  border-radius: 6px;
+  background: #EFF0F2;
+  color: #003D6A;
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.btn-selecionar {
+  border-radius: 6px;
+  background: #003D6A;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.stepper-buttons {
+  border-top: solid 1px #D6DCE6;
+  padding: 20px 40px 20px 0;
+  justify-content: flex-end;
+  display: flex;
+  margin-top: 40px;
+}
+
+.mat-horizontal-content-container {
+  padding: 0 !important;
+}
+
+.mat-horizontal-content-container {
+  form {
+    padding: 0 40px;
+  }
+}
+
+.mat-form-field-empty.mat-form-field-label {
+  color: rgba(0, 0, 0, .6) !important;
+}
+
+.btn-publicar {
+  background: #00ABAF;
+  color: #fff;
+}
+
+.mat-raised-button {
+  border-radius: 6px;
+}
+
+.toolbar {
+  .mat-form-field-flex {
+    height: 45px;
+  }
+
+  .mat-form-field-flex {
+    height: 45px;
+  }
+
+
+  form {
+    .mat-form-field-flex {
+      height: 50px;
+    }
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-flex {
+    display: inline-flex;
+  }
+
+  button.mat-raised-button,
+  button.mat-button,
+  a.mat-raised-button,
+  a.mat-button {
+    padding: 2px 16px !important;
+    margin-top: 2px !important;
+  }
+
+  mat-nav-list.pad-none.mat-nav-list.mat-list-base.ng-star-inserted {
+    height: 60% !important;
+  }
+
+  .none-text {
+    margin: 4px 0 20px 0;
+    color: rgba(85, 85, 85, 0.616);
+  }
+}
+
+visualizar-inventario, inserir-inventario {
+  mat-expansion-panel {
+    box-shadow: none !important;
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0
+  }
+}
+

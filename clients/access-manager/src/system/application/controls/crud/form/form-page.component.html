@@ -1,0 +1,41 @@
+<form #form="ngForm" novalidate>
+  <div class="toolbar" layout="row" flex>
+    <div layout="column">
+      <div class="headline" [innerHTML]="headline"></div>
+      <div class="subhead" [innerHTML]="subhead"></div>
+    </div>
+    <div layout="row" layout-align="end center" flex>
+      <button mat-raised-button type="button" color="accent" [routerLink]="[backLink]">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Voltar</span>
+      </button>
+      <horizontal-space></horizontal-space>
+      <button mat-raised-button type="button" color="primary" (click)="saveEntity(form)">
+        <mat-icon>save</mat-icon>
+        <span>Salvar</span>
+      </button>
+    </div>
+  </div>
+  <mat-card id="default-form">
+    <div layout="row">
+      <mat-form-field flex>
+        <input matInput placeholder="Nome" name="nome" [(ngModel)]="entity.nome" maxlength="150" required/>
+      </mat-form-field>
+      <horizontal-space></horizontal-space>
+      <mat-form-field flex>
+        <input matInput placeholder="Sigla" name="sigla" [(ngModel)]="entity.sigla" maxlength="20" required/>
+      </mat-form-field>
+    </div>
+    <div layout="row" *ngIf="hasDescription">
+      <mat-form-field flex>
+                <textarea matInput #descricao placeholder="Descrição" name="descricao" [(ngModel)]="entity.descricao"
+                          matTextareaAutosize
+                          matAutosizeMinRows="2"
+                          matAutosizeMaxRows="10"
+                          maxlength="500">
+                </textarea>
+        <mat-hint align="end">{{ descricao.value.length }} / 500</mat-hint>
+      </mat-form-field>
+    </div>
+  </mat-card>
+</form>

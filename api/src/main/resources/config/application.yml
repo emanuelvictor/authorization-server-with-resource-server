@@ -1,0 +1,70 @@
+spring:
+  application.name: erp
+
+  datasource:
+    username: erp
+    password: erp
+    hikari.pool-name: ${spring.application.name}
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    hikari.maximum-pool-size: 10
+    url: jdbc:postgresql://localhost:5432/erp
+
+  #JPA
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming:
+        implicit-strategy: com.emanuelvictor.infrastructure.jpa.fk.CustomNamingStrategy
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true
+      hibernate.id.new_generator_mappings: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.default_schema: public
+      hibernate:
+        enable_lazy_load_no_trans: true
+        event:
+          merge:
+            entity_copy_observer: allow
+        metadata_builder_contributor: com.emanuelvictor.infrastructure.jpa.function.SqlFunctionsMetadataBuilderContributor
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: ALL
+
+  #THYMELEAF
+  thymeleaf:
+    mode: HTML
+    cache: false
+    prefix: classpath:/META-INF/resources/
+    suffix: .html
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migrations
+    sql-migration-prefix:
+    baseline-on-migrate: true
+    baseline-version: 0
+    fail-on-missing-locations: true
+
+
+#logging:
+#  level:
+#    root: DEBUG
+#    org.hibernate: DEBUG
+#    org.springframework: DEBUG
+#    org.springframework.web: DEBUG
+#    org.springframework.security: DEBUG
+#    org.springframework.context.support: DEBUG
+#    org.springframework.security.oauth2: DEBUG
+#    org.springframework.security.oauth2.server.authorization: DEBUG
+#    org.springframework.security.oauth2.jwt: DEBUG
+#    org.apache.coyote.http11: DEBUG
+
+info:
+  name: erp
+  description: 'ERP'
+  version: nana
+  environment: nana

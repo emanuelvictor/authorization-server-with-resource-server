@@ -1,0 +1,101 @@
+<div class="toolbar" layout="row" layout-xs='column' flex (keyup.esc)="clearFilters()">
+  <div layout="column" flex>
+    <div class="headline" [innerHTML]="headline"></div>
+    <div class="subhead" [innerHTML]="subhead"></div>
+  </div>
+  <!--<span flex='70' hide-xs></span>-->
+  <div layout="row" layout-align="end center" flex-sm="30">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar</mat-label>
+      <input matInput type="text" placeholder="Buscar" name="text" [(ngModel)]="filters.defaultFilter"
+             (ngModelChange)="debounce(this, listByFiltersStatement)"/>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <button-toggle-advanced-filters (click)="toggleAdvancedFilters()"
+                                    [advancedFiltersActive]="existsAdvancedFilters(filters)" class="ml-25">
+    </button-toggle-advanced-filters>
+
+    <a class="ml-25" *hasPermission="rolesToAdd; operation 'OR'" mat-raised-button color="primary"
+       [routerLink]="['insert']">
+      <mat-icon>add</mat-icon>
+      <span hide-sm hide-xs>Adicionar</span>
+    </a>
+  </div>
+</div>
+
+<div [style.overflow]="'hidden'" [@tdCollapse]="{ value: advancedFilters }">
+  <div layout="row" flex class="advanced-filters" (keyup.esc)="clearFilters()">
+    <div layout="row" flex="85">
+      <mat-form-field>
+        <mat-label>Ativo</mat-label>
+        <mat-select [(ngModel)]="filters.ativoFilter"
+                    disableOptionCentering="true" name="ativo"
+                    (ngModelChange)="listByFilters(true)">
+          <mat-option [value]="''">Ambos</mat-option>
+          <mat-option *ngFor="let status of status" [value]="status.id">
+            {{ status.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div layout="row" layout-align="end center" flex [style.marginTop.px]="-10">
+      <button-clear-filters (clear)="clearFilters()"></button-clear-filters>
+    </div>
+  </div>
+</div>
+
+<div id="default-table" [style.margin-top]="'20px'">
+  <mat-table #table matSort matSortDisableClear matSortActive="nome" matSortDirection="asc" [dataSource]="dataSource">
+
+    <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>
+        {{ column.label }}
+      </mat-header-cell>
+      <mat-cell *matCellDef='let data' [routerLink]="[data?.id]">
+        <span ellipsis>
+          {{ column.translate ? (data[column.name] | translate) || '-' : (data[column.name] || '-')  }}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef='ativo'>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Ativo</mat-header-cell>
+      <mat-cell *matCellDef="let data"><a [routerLink]="[data.id]">{{ data.ativo ? 'Sim' : 'Não' }}</a>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef class="actions">Ações</mat-header-cell>
+      <mat-cell *matCellDef="let data" class="actions">
+        <button mat-icon-button [matMenuTriggerFor]="appMenu" aria-label="">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #appMenu="matMenu">
+          <ng-container *hasPermission="rolesToEdit; operation 'OR'">
+            <button *ngIf='editavel' mat-menu-item [routerLink]="['edit/' + data?.id]">
+              Editar
+            </button>
+          </ng-container>
+          <ng-container *hasPermission="rolesToDelete; operation 'OR'">
+            <button mat-menu-item (click)="activateItem(data)">
+              {{data.ativo ? 'Desativar' : 'Ativar'}}
+            </button>
+          </ng-container>
+          <ng-container *hasPermission="rolesToDelete; operation 'OR'">
+            <button *ngIf='deletavel' mat-menu-item (click)="openDeleteDialog(data)">
+              Excluir
+            </button>
+          </ng-container>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let data; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <no-records-found [dataSource]="dataSource?.data"></no-records-found>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" [length]="totalElements" [pageIndex]="pageIndex"
+                 [pageSize]="pageSize" [hidePageSize]="false" (page)="listByFilters()">
+  </mat-paginator>
+</div>

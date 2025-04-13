@@ -1,0 +1,37 @@
+<div class='toolbar' layout='row' flex>
+  <div layout='column'>
+    <div class='headline' [innerHTML]="'Grupo de Acesso / Detalhes'"></div>
+    <div class='subhead' [innerHTML]="'Grupo de Acesso'"></div>
+  </div>
+  <div layout='row' layout-align='end center' flex>
+    <button mat-raised-button type='button' routerLink='../'>
+      <mat-icon>arrow_back</mat-icon>
+      <span>Voltar</span>
+    </button>
+    <button class='ml-25'
+            mat-raised-button
+            type='button' color='warn'
+            (click)='openDeleteDialog(group)'>
+      <mat-icon>delete_forever</mat-icon>
+      <span>Excluir</span>
+    </button>
+    <a class='ml-25'
+       mat-raised-button
+       [routerLink]="'edit'"
+       type='button' color='primary'>
+      <mat-icon>edit</mat-icon>
+      <span>Editar</span>
+    </a>
+  </div>
+</div>
+
+<mat-card>
+  <access-group-data-view [group]='group'>
+    <div accessGroupLabelName layout="row" *ngIf='group?.name'>
+      <div layout="column" flex>
+        <label class="title">Nome:</label>
+        <label class="text">{{ group.name }}</label>
+      </div>
+    </div>
+  </access-group-data-view>
+</mat-card>
