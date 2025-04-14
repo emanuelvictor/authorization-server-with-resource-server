@@ -7,7 +7,7 @@ import {GroupPermission} from "../entity/group-permission.model";
 export class AccessGroupPermissionRepository extends BaseRepository<GroupPermission> {
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'access-manager/v1/access-group-permissions');
+    super(httpClient, 'api/access-manager/access-group-permissions');
   }
 
   save(accessGroupPermission: GroupPermission) {

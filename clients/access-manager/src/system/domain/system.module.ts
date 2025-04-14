@@ -75,14 +75,11 @@ import {UpdateApplicationComponent} from "../application/presentation/authentica
 import {ViewApplicationComponent} from "../application/presentation/authenticated/access/applications/view-application/view-application.component";
 import {ApplicationRepository} from "./repository/application.repository";
 import {ApplicationFormComponent} from "../application/presentation/authenticated/access/applications/insert-application/application-form/application-form.component";
-import {TokenRepository} from "./repository/token.repository";
 import {
   AccessGroupDataViewComponent
 } from "../application/presentation/authenticated/access/groups/view-group/access-group-data-view/access-group-data-view.component";
 import {TreePermissionsViewComponent} from "../application/presentation/authenticated/access/recursive/tree-permissions-view.component";
 import {AccessGroupPermissionRepository} from "./repository/accessGroupPermission.repository";
-import {TestComponent} from "../application/presentation/authenticated/access/test/test.component";
-import {TestRepository} from "./repository/test.repository";
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -158,9 +155,6 @@ export function customTranslateLoader(http: HttpClient) {
     LinkPermissionsComponent,
     UpdatePasswordComponent,
 
-    // Test
-    TestComponent,
-
     // Application
     ApplicationViewComponent,
     ConsultApplicationsComponent,
@@ -213,9 +207,7 @@ export function customTranslateLoader(http: HttpClient) {
     PermissionRepository,
     ApplicationRepository,
     GroupRepository,
-    TokenRepository,
     AccessGroupPermissionRepository,
-    TestRepository,
 
     // Services
     Describer,

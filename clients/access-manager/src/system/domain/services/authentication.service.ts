@@ -14,7 +14,7 @@ import {RequestOptions} from "@angular/http";
 @Injectable()
 export class AuthenticationService implements CanActivate, CanActivateChild {
 
-    private origin = window.location.origin;
+    private origin = window.location.origin + window.location.pathname;
 
     public user: User;
 

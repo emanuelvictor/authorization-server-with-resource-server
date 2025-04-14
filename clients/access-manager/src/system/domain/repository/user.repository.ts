@@ -13,7 +13,7 @@ export class UserRepository extends BaseRepository<User> {
    * @param httpClient
    */
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'access-manager/users');
+    super(httpClient, 'api/access-manager/users');
   }
 
   /**

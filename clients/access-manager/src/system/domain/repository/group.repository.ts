@@ -7,7 +7,7 @@ import {Group} from "../entity/group.model";
 export class GroupRepository extends BaseRepository<Group> {
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'access-manager/v1/groups');
+    super(httpClient, 'api/access-manager/groups');
   }
 
   // link(groupId: number, authority: string) {

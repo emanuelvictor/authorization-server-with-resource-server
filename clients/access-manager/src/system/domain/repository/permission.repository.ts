@@ -7,6 +7,6 @@ import {Permission} from "../entity/permission.model";
 export class PermissionRepository extends BaseRepository<Permission> {
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'access-manager/permissions');
+    super(httpClient, 'api/access-manager/permissions');
   }
 }

@@ -15,7 +15,7 @@ spring:
     hibernate:
       ddl-auto: validate
       naming:
-        implicit-strategy: com.emanuelvictor.infrastructure.jpa.fk.CustomNamingStrategy
+        implicit-strategy: com.emanuelvictor.common.infrastructure.fk.CustomNamingStrategy
     show-sql: true
     open-in-view: false
     properties:
@@ -28,7 +28,7 @@ spring:
         event:
           merge:
             entity_copy_observer: allow
-        metadata_builder_contributor: com.emanuelvictor.infrastructure.jpa.function.SqlFunctionsMetadataBuilderContributor
+        metadata_builder_contributor: com.emanuelvictor.common.infrastructure.function.SqlFunctionsMetadataBuilderContributor
       jakarta:
         persistence:
           sharedCache:
@@ -49,19 +49,18 @@ spring:
     baseline-version: 0
     fail-on-missing-locations: true
 
-
-#logging:
-#  level:
-#    root: DEBUG
-#    org.hibernate: DEBUG
-#    org.springframework: DEBUG
-#    org.springframework.web: DEBUG
-#    org.springframework.security: DEBUG
-#    org.springframework.context.support: DEBUG
-#    org.springframework.security.oauth2: DEBUG
-#    org.springframework.security.oauth2.server.authorization: DEBUG
-#    org.springframework.security.oauth2.jwt: DEBUG
-#    org.apache.coyote.http11: DEBUG
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.springframework: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.context.support: INFO
+    org.springframework.security.oauth2: INFO
+    org.springframework.security.oauth2.server.authorization: INFO
+    org.springframework.security.oauth2.jwt: INFO
+    org.apache.coyote.http11: INFO
 
 info:
   name: erp

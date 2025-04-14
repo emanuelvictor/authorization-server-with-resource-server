@@ -1,7 +1,16 @@
 .idea
 .idea/*
 clients/access-manager/.idea/*
+clients/access-manager/node_modules
+clients/access-manager/node_modules/
+clients/access-manager/node_modules/*
 api/.idea/*
+api/target
+api/target/
+api/target/*
+api/src/main/resources/public
+api/src/main/resources/public/
+api/src/main/resources/public/*
 
 .gradle
 build/

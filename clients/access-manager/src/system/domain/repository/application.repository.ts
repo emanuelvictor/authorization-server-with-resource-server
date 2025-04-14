@@ -11,7 +11,7 @@ export class ApplicationRepository extends BaseRepository<Application> {
    * @param httpClient
    */
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'access-manager/applications');
+    super(httpClient, 'api/access-manager/applications');
   }
 
   /**

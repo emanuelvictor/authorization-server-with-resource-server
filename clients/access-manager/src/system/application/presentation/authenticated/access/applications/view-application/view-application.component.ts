@@ -4,7 +4,6 @@ import {AuthenticatedViewComponent} from '../../../authenticated-view.component'
 import {MessageService} from '../../../../../../domain/services/message.service';
 import {ApplicationRepository} from "../../../../../../domain/repository/application.repository";
 import {viewAnimation} from "../../../../../utils/utils";
-import {UpdatePasswordComponent} from "../update-password/update-password.component";
 import {MatDialog} from "@angular/material";
 import {Application} from "../../../../../../domain/entity/application.model";
 
@@ -66,25 +65,4 @@ export class ViewApplicationComponent implements OnInit {
       .subscribe(result => this.application = result)
   }
 
-  /**
-   *
-   */
-  public updateEnabled(id: number) {
-    this.applicationRepository.updateEnable(id)
-      .then((enabled) => {
-        this.application.enabled = enabled;
-        this.messageService.toastSuccess(this.application.enabled ? 'Ativado com sucesso' : 'Inativado com sucesso')
-      })
-  }
-
-  /**
-   *
-   */
-  public updatePassword() {
-    this.dialog.open(UpdatePasswordComponent, {
-      width: '400px',
-      height: 'auto',
-      data: {application: this.application || null}
-    })
-  }
 }

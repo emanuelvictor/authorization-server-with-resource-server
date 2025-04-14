@@ -12,7 +12,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "../../api/src/main/resources/public/access-manager",
             "index": "src/system/index.html",
             "main": "src/system/application/system-main.ts",
             "polyfills": "src/polyfills.ts",
