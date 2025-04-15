@@ -4,6 +4,7 @@ clients/access-manager/.idea/*
 clients/access-manager/node_modules
 clients/access-manager/node_modules/
 clients/access-manager/node_modules/*
+clients/access-manager/node
 api/.idea/*
 api/target
 api/target/
