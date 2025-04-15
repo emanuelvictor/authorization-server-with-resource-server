@@ -1,6 +1,6 @@
 package com.emanuelvictor.accessmanager.domain.services;
 
-import com.emanuelvictor.AbstractIntegrationTests;
+import com.emanuelvictor.SpringBootTests;
 import com.emanuelvictor.accessmanager.domain.entities.Group;
 import com.emanuelvictor.accessmanager.domain.entities.GroupPermission;
 import com.emanuelvictor.accessmanager.domain.entities.Permission;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LinkPermissionToGroupServiceTests extends AbstractIntegrationTests {
+public class LinkPermissionToGroupServiceTests extends SpringBootTests {
 
     @Autowired
     private GroupRepository groupRepository;

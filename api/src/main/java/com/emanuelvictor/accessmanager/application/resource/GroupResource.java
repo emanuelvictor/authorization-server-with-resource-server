@@ -62,7 +62,7 @@ public class GroupResource {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAnyAuthority('root.access-manager.groups.create','root.access-manager.groups','root.access-manager','root')")
-    public Group create(@RequestBody final Group accessGroup, final HttpServletRequest request) {
+    public Group create(@RequestBody final Group accessGroup) {
         return groupRepository.save(accessGroup);
     }
 

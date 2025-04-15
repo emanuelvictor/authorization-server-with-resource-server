@@ -1,6 +1,6 @@
 package com.emanuelvictor.accessmanager.domain.repositories;
 
-import com.emanuelvictor.AbstractIntegrationTests;
+import com.emanuelvictor.SpringBootTests;
 import com.emanuelvictor.accessmanager.domain.entities.GroupPermission;
 import com.emanuelvictor.accessmanager.domain.entities.Permission;
 import com.emanuelvictor.accessmanager.domain.entity.AccessGroupPermissionBuilder;
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class GroupPermissionRepositoryTests extends AbstractIntegrationTests {
+public class GroupPermissionRepositoryTests extends SpringBootTests {
 
     @Autowired
     private GroupRepository groupRepository;

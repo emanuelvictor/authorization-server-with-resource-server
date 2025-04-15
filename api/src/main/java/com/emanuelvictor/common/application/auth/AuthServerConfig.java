@@ -16,6 +16,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -190,7 +191,7 @@ public class AuthServerConfig {
                         .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login")))
                 .cors(Customizer.withDefaults());
 
-        // Desabilita CSRF para os endpoints OAuth2
+        // Desabilita CSRF para os endpoints OAuth2 // TODO verificar necessidade
         http.csrf(csrf -> csrf.ignoringRequestMatchers("/oauth2/**"));
 
         return http.build();
@@ -218,6 +219,7 @@ public class AuthServerConfig {
                         .jwt(jwt -> jwt
                                 .jwtAuthenticationConverter(jwtAuthenticationConverter())
                         ))
+                .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults());
 
         return http.build();

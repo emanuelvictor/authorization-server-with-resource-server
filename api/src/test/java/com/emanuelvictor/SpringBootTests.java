@@ -15,10 +15,10 @@ import java.util.Collections;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql("/datasets/truncate_all_tables.sql")
-@DisplayNameGeneration(AbstractIntegrationTests.HandlerCamelCaseNameFromClasses.class)
-public abstract class AbstractIntegrationTests {
+@DisplayNameGeneration(SpringBootTests.HandlerCamelCaseNameFromClasses.class)
+public abstract class SpringBootTests {
 
-    public AbstractIntegrationTests() {
+    public SpringBootTests() {
         final GenericContainer<?> postgres = new GenericContainer<>(DockerImageName.parse("postgres:13.2-alpine"))
                 .withEnv("POSTGRES_USER", "erp")
                 .withEnv("POSTGRES_PASSWORD", "erp")

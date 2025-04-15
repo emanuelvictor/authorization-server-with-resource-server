@@ -1,6 +1,6 @@
 package com.emanuelvictor.accessmanager.domain.repositories;
 
-import com.emanuelvictor.AbstractIntegrationTests;
+import com.emanuelvictor.SpringBootTests;
 import com.emanuelvictor.accessmanager.domain.entity.PermissionBuilder;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
 
-public class PermissionRepositoryTests extends AbstractIntegrationTests {
+public class PermissionRepositoryTests extends SpringBootTests {
 
     @Autowired
     private PermissionRepository permissionRepository;

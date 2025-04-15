@@ -1,6 +1,6 @@
 package com.emanuelvictor.accessmanager.application.resource;
 
-import com.emanuelvictor.AbstractIntegrationTests;
+import com.emanuelvictor.SpringBootTests;
 import com.emanuelvictor.accessmanager.domain.entities.Group;
 import com.emanuelvictor.accessmanager.domain.entity.GroupBuilder;
 import com.emanuelvictor.accessmanager.domain.repositories.GroupRepository;
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oauth2Login;
 
-public class GroupResourceTests extends AbstractIntegrationTests {
+public class GroupResourceTests extends SpringBootTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -34,7 +34,7 @@ public class GroupResourceTests extends AbstractIntegrationTests {
 //        final var jsonExpected = objectMapper.writeValueAsString(pageOfAccessGroupPermissions);
 
         final var result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/v1/access-group-permissions")
+                .get("/api/access-manager/access-group-permissions")
                 .param("groupId", String.valueOf(id))
                 .with(oauth2Login()
                         .authorities((GrantedAuthority) () -> "root")
@@ -55,13 +55,13 @@ public class GroupResourceTests extends AbstractIntegrationTests {
         final var id = 1L;
 
         final var result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/v1/access-group-permissions")
+                .get("/api/access-manager/access-group-permissions")
                 .param("groupId", String.valueOf(id))
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
         );
 
-        result.andExpect(status().isForbidden());
+        result.andExpect(status().isUnauthorized());
     }
 
     /**
@@ -72,8 +72,8 @@ public class GroupResourceTests extends AbstractIntegrationTests {
         assertThat(accessGroupRepository.count()).isEqualTo(0);
 
         final var result = mockMvc.perform(MockMvcRequestBuilders
-                .post("/v1/access-groups")
-                .content(objectMapper.writeValueAsBytes(new GroupBuilder().build()))
+                .post("/api/access-manager/access-groups")
+                .content(objectMapper.writeValueAsString(new GroupBuilder().build()))
                 .with(oauth2Login()
                         .authorities((GrantedAuthority) () -> "root")
                 )
@@ -95,7 +95,7 @@ public class GroupResourceTests extends AbstractIntegrationTests {
         group.setName(newName);
 
         final var result = mockMvc.perform(MockMvcRequestBuilders
-                .put("/v1/access-groups/" + group.getId())
+                .put("/api/access-manager/access-groups/" + group.getId())
                 .content(objectMapper.writeValueAsBytes(group))
                 .with(oauth2Login()
                         .authorities((GrantedAuthority) () -> "root")
@@ -118,7 +118,7 @@ public class GroupResourceTests extends AbstractIntegrationTests {
         final Group group = accessGroupRepository.save(new GroupBuilder().build());
 
         final var result = mockMvc.perform(MockMvcRequestBuilders
-                .delete("/v1/access-groups/" + group.getId())
+                .delete("/api/access-manager/access-groups/" + group.getId())
                 .with(oauth2Login()
                         .authorities((GrantedAuthority) () -> "root")
                 )
