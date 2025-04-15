@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Set;
 
+import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
+
 /**
  * @author Emanuel Victor
  * @version 1.0.0
@@ -20,9 +22,9 @@ import java.util.Set;
  */
 @Data
 @Entity
-@Table(name = "\"user\"")
 @JsonIgnoreProperties({"authorities"})
 @lombok.EqualsAndHashCode(callSuper = true)
+@Table(schema = DEFAULT_TENANT_ID, name = "\"user\"")
 public class User extends PersistentEntity implements UserDetails {
 
     /**

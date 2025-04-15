@@ -92,13 +92,34 @@ public class AuthServerConfig {
     }
 
     @Bean
+    public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
+        return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
+    }
+
+    @Bean
+    public OAuth2TokenCustomizer<JwtEncodingContext> jwtTokenCustomizer() {
+        return (context) -> {
+            if (OAuth2TokenType.ACCESS_TOKEN.equals(context.getTokenType())) {
+                context.getClaims().claims((claims) -> {
+                    Set<String> authorities = AuthorityUtils.authorityListToSet(context.getPrincipal().getAuthorities())
+                            .stream()
+                            .map(c -> c.replaceFirst("^ROLE_", ""))
+                            .collect(Collectors.collectingAndThen(Collectors.toSet(), Collections::unmodifiableSet));
+                    claims.put("authorities", authorities);
+                });
+            }
+        };
+    }
+
+    @Bean
     public RegisteredClientRepository registeredClientRepository(PasswordEncoder passwordEncoder) {
         String encodedSecret = passwordEncoder.encode("browser");
 
+        // In memory for now, we need migrate it to database when use microservices
         RegisteredClient client = RegisteredClient.withId("browser")
                 .clientId("browser")
                 .clientSecret(encodedSecret)
-                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+//                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
@@ -123,33 +144,6 @@ public class AuthServerConfig {
                 .build();
 
         return new InMemoryRegisteredClientRepository(client);
-    }
-
-    @Bean
-    public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
-        return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
-    }
-
-    @Bean
-    public AuthorizationServerSettings authorizationServerSettings() {
-        return AuthorizationServerSettings.builder()
-                .issuer("http://localhost:8080")
-                .build();
-    }
-
-    @Bean
-    public OAuth2TokenCustomizer<JwtEncodingContext> jwtTokenCustomizer() {
-        return (context) -> {
-            if (OAuth2TokenType.ACCESS_TOKEN.equals(context.getTokenType())) {
-                context.getClaims().claims((claims) -> {
-                    Set<String> authorities = AuthorityUtils.authorityListToSet(context.getPrincipal().getAuthorities())
-                            .stream()
-                            .map(c -> c.replaceFirst("^ROLE_", ""))
-                            .collect(Collectors.collectingAndThen(Collectors.toSet(), Collections::unmodifiableSet));
-                    claims.put("authorities", authorities);
-                });
-            }
-        };
     }
 
     @Bean
@@ -236,5 +230,12 @@ public class AuthServerConfig {
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
+    }
+
+    @Bean
+    public AuthorizationServerSettings authorizationServerSettings() {
+        return AuthorizationServerSettings.builder()
+                .issuer("http://localhost:8080")
+                .build();
     }
 }

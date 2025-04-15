@@ -3,9 +3,12 @@ package com.emanuelvictor.accessmanager.domain.entities;
 import com.emanuelvictor.accessmanager.domain.entities.generic.PersistentEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+
+import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
 
 
 /**
@@ -17,6 +20,7 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 @Entity
 @NoArgsConstructor
+@Table(schema = DEFAULT_TENANT_ID)
 @EqualsAndHashCode(callSuper = true)
 public class Group extends PersistentEntity {
 

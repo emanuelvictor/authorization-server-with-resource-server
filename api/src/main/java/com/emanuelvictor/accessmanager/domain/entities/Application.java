@@ -3,23 +3,23 @@ package com.emanuelvictor.accessmanager.domain.entities;
 import com.emanuelvictor.common.application.converters.StringSetConverter;
 import com.emanuelvictor.accessmanager.domain.entities.generic.PersistentEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import java.util.Set;
+
+import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
 
 /**
  *
  */
 @Entity
 @ToString
+@Table(schema = DEFAULT_TENANT_ID)
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties({"authorities"})
 public class Application extends PersistentEntity {

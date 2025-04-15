@@ -41,14 +41,14 @@ export class Interceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.progress.start();
 
-    if (this.authenticationService.access && this.authenticationService.access.access_token)
+    if (this.authenticationService.access && this.authenticationService.access.access_token && req.url.indexOf('oauth2') <= 0)
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${this.authenticationService.access.access_token}`
         }
       });
 
-    if (this.authenticationService.access && this.authenticationService.access.access_token && this.authenticationService.access.isInvalidAccessToken && req.url.indexOf('grant_type=refresh_token') <= 0) {
+    if (this.authenticationService.access && this.authenticationService.access.access_token && this.authenticationService.access.isInvalidAccessToken && req.url.indexOf('oauth2') <= 0) {
       return this.authenticationService.getAccessTokenByRefreshToken(this.authenticationService.access.refresh_token)
         .mergeMap(value => {
           this.authenticationService.access = new Access(value);

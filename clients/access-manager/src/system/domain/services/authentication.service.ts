@@ -116,12 +116,11 @@ export class AuthenticationService implements CanActivate, CanActivateChild {
      *
      * @param authorizationCode
      */
-    public getAccessTokenByAuthorizationCode(authorizationCode: string): Promise<any> {
+    public getAccessTokenByAuthorizationCode(authorizationCode: string): Promise<Access> {
         let headers: HttpHeaders = new HttpHeaders();
         headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
-        headers = headers.set('Authorization', 'Basic ' + btoa('browser:browser'));
-        const body = `grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${this.origin}`;
-        return this.http.post(`${environment.SSO}/oauth2/token`, body, {headers}).toPromise();
+        const body = `grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${this.origin}&client_id=browser&client_secret=browser`;
+        return this.http.post<Access>(`${environment.SSO}/oauth2/token`, body, {headers}).toPromise();
     }
 
     /**
@@ -129,7 +128,10 @@ export class AuthenticationService implements CanActivate, CanActivateChild {
      * @param refreshToken
      */
     public getAccessTokenByRefreshToken(refreshToken: string): Observable<Access> { // TODO must return a promise too
-        return this.http.post<Access>(`${environment.SSO}/oauth2/token?grant_type=refresh_token&refresh_token=${refreshToken}&client_id=browser&client_secret=browser`, {})
+        let headers: HttpHeaders = new HttpHeaders();
+        headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
+        const body = `grant_type=refresh_token&refresh_token=${refreshToken}&client_id=browser&client_secret=browser`;
+        return this.http.post<Access>(`${environment.SSO}/oauth2/token`, body, {headers});
     }
 
     /**

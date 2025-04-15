@@ -11,6 +11,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 
+import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
+
 
 /**
  * @author Emanuel Victor
@@ -19,7 +21,9 @@ import org.springframework.security.core.GrantedAuthority;
  */
 @Entity
 @Getter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, // TODO ACOPLAMENTO
+@Table(schema = DEFAULT_TENANT_ID)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id",
         scope = Permission.class,
         resolver = EntityIdResolver.class)
