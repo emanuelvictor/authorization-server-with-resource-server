@@ -22,7 +22,7 @@
     <description>Spring Boot with Authorization Server + Resource Server to ERP application</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>24</java.version>
         <spring.boot.version>3.4.3</spring.boot.version>
         <spring-authorization-server.version>1.4.2</spring-authorization-server.version>
         <assertj>3.26.3</assertj>
