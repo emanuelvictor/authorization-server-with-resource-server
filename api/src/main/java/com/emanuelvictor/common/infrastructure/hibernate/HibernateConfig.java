@@ -61,7 +61,8 @@ public class HibernateConfig {
         em.setPackagesToScan(
                 "com.emanuelvictor.accessmanager.domain.entities",
                 "com.emanuelvictor.accessmanager.application.ports.secundaries.jpa",
-                "com.emanuelvictor.tenants.application.ports.secundaries.jpa"
+                "com.emanuelvictor.tenants.application.ports.secundaries.jpa",
+                "com.emanuelvictor.stock.application.ports.secundaries.jpa"
         );
 
         em.setJpaVendorAdapter(jpaVendorAdapter());

@@ -1,4 +1,4 @@
-package com.emanuelvictor.accessmanager.application.adapters;
+package com.emanuelvictor.common.application.adapters;
 
 @FunctionalInterface
 public interface NullaryUseCase<Output> {

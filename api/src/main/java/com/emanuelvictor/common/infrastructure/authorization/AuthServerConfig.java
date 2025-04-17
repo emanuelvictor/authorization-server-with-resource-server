@@ -3,6 +3,8 @@ package com.emanuelvictor.common.infrastructure.authorization;
 import com.emanuelvictor.accessmanager.domain.entities.GroupPermission;
 import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.GroupPermissionRepository;
 import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.UserRepository;
+import com.emanuelvictor.accessmanager.domain.entities.Tenant;
+import com.emanuelvictor.accessmanager.domain.entities.User;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
@@ -106,6 +108,8 @@ public class AuthServerConfig {
                             .map(c -> c.replaceFirst("^ROLE_", ""))
                             .collect(Collectors.collectingAndThen(Collectors.toSet(), Collections::unmodifiableSet));
                     claims.put("authorities", authorities);
+                    if (((User) context.getPrincipal().getPrincipal()).getTenant() != null)
+                        claims.put("tenant", ((User) context.getPrincipal().getPrincipal()).getTenant().getIdentification());
                 });
             }
         };
