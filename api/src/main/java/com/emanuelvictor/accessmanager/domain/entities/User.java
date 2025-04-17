@@ -1,6 +1,6 @@
 package com.emanuelvictor.accessmanager.domain.entities;
 
-import com.emanuelvictor.common.domain.entities.PersistentEntity;
+import com.emanuelvictor.common.application.ports.secundaries.jpa.PersistentEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;

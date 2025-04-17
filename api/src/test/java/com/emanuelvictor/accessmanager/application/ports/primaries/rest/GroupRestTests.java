@@ -5,11 +5,19 @@ import com.emanuelvictor.accessmanager.domain.entities.Group;
 import com.emanuelvictor.accessmanager.domain.entity.GroupBuilder;
 import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.GroupRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.nio.charset.StandardCharsets;
@@ -17,6 +25,7 @@ import java.nio.charset.StandardCharsets;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oauth2Login;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 public class GroupRestTests extends SpringBootTests {
 
@@ -27,11 +36,19 @@ public class GroupRestTests extends SpringBootTests {
     @Autowired
     private GroupRepository accessGroupRepository;
 
+//    private CsrfTokenRepository csrfTokenRepository;
+//    private CsrfToken csrfToken;
+
+//    @BeforeEach
+//    public void setup() {
+//        csrfTokenRepository = new HttpSessionCsrfTokenRepository();
+//        MockHttpServletRequest request = new MockHttpServletRequest();
+//        csrfToken = csrfTokenRepository.generateToken(request);
+//    }
+
     @Test
     public void mustReturnAccessGroupPermissionsByGroupId() throws Exception {
         final var id = 1L;
-//        final var pageOfAccessGroupPermissions = groupPermissionRepository.findByGroupId(id, null);
-//        final var jsonExpected = objectMapper.writeValueAsString(pageOfAccessGroupPermissions);
 
         final var result = mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/access-manager/access-group-permissions")
@@ -39,17 +56,14 @@ public class GroupRestTests extends SpringBootTests {
                 .with(oauth2Login()
                         .authorities((GrantedAuthority) () -> "root")
                 )
+                .with(csrf()) // Adiciona CSRF token automaticamente
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
         );
 
         result.andExpect(status().isOk());
-//                .andExpect(content().string(jsonExpected));
     }
 
-    /**
-     * @throws Exception exception
-     */
     @Test
     public void cannotAccessResourceWithoutRequiredPermissions() throws Exception {
         final var id = 1L;
@@ -57,6 +71,7 @@ public class GroupRestTests extends SpringBootTests {
         final var result = mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/access-manager/access-group-permissions")
                 .param("groupId", String.valueOf(id))
+                .with(csrf()) // Adiciona CSRF token automaticamente
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
         );
@@ -64,9 +79,6 @@ public class GroupRestTests extends SpringBootTests {
         result.andExpect(status().isUnauthorized());
     }
 
-    /**
-     * @throws Exception exception
-     */
     @Test
     public void mustCreateAccessGroup() throws Exception {
         assertThat(accessGroupRepository.count()).isEqualTo(0);
@@ -77,6 +89,7 @@ public class GroupRestTests extends SpringBootTests {
                 .with(oauth2Login()
                         .authorities((GrantedAuthority) () -> "root")
                 )
+                .with(csrf()) // Adiciona CSRF token automaticamente
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
         );
@@ -85,9 +98,6 @@ public class GroupRestTests extends SpringBootTests {
         assertThat(accessGroupRepository.count()).isEqualTo(1);
     }
 
-    /**
-     * @throws Exception exception
-     */
     @Test
     public void mustUpdateAccessGroup() throws Exception {
         final Group group = accessGroupRepository.save(new GroupBuilder().build());
@@ -100,6 +110,7 @@ public class GroupRestTests extends SpringBootTests {
                 .with(oauth2Login()
                         .authorities((GrantedAuthority) () -> "root")
                 )
+                .with(csrf()) // Adiciona CSRF token automaticamente
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
         );
@@ -110,9 +121,6 @@ public class GroupRestTests extends SpringBootTests {
         assertThat(savedAccessGroup.getName()).isEqualTo(newName);
     }
 
-    /**
-     * @throws Exception exception
-     */
     @Test
     public void mustDeleteAnAccessGroup() throws Exception {
         final Group group = accessGroupRepository.save(new GroupBuilder().build());
@@ -122,10 +130,18 @@ public class GroupRestTests extends SpringBootTests {
                 .with(oauth2Login()
                         .authorities((GrantedAuthority) () -> "root")
                 )
+                .with(csrf()) // Adiciona CSRF token automaticamente
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
         );
 
         result.andExpect(status().isNoContent());
     }
+//
+//    // Método alternativo que usa o token manualmente ao invés do post processor
+//    private MockHttpServletRequestBuilder withCsrfToken(MockHttpServletRequestBuilder requestBuilder) {
+//        return requestBuilder
+//                .param(csrfToken.getParameterName(), csrfToken.getToken())
+//                .header(csrfToken.getHeaderName(), csrfToken.getToken());
+//    }
 }

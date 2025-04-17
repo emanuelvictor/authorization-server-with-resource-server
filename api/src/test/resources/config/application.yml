@@ -16,9 +16,11 @@ spring:
       ddl-auto: validate
       naming:
         implicit-strategy: com.emanuelvictor.common.infrastructure.hibernate.function.CustomNamingStrategy
+        physical-strategy: com.emanuelvictor.common.infrastructure.hibernate.function.CustomPhysicalNamingStrategy
     show-sql: true
     open-in-view: false
     properties:
+      hibernate.order_by.default_null_ordering: last
       hibernate.jdbc.lob.non_contextual_creation: true
       hibernate.id.new_generator_mappings: true
       hibernate.cache.use_second_level_cache: false
@@ -28,7 +30,7 @@ spring:
         event:
           merge:
             entity_copy_observer: allow
-        metadata_builder_contributor: com.emanuelvictor.common.infrastructure.function.SqlFunctionsMetadataBuilderContributor
+        metadata_builder_contributor: com.emanuelvictor.common.infrastructure.hibernate.function.SqlFunctionsMetadataBuilderContributor
       jakarta:
         persistence:
           sharedCache:
@@ -41,18 +43,3 @@ spring:
     baseline-on-migrate: true
     baseline-version: 0
     fail-on-missing-locations: true
-
-logging:
-#  file:
-#    name: /var/log/${spring.application.name}/${spring.application.name}.log
-  level:
-    root: DEBUG
-    org.hibernate: DEBUG
-    org.springframework: DEBUG
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.context.support: DEBUG
-    org.springframework.security.oauth2: DEBUG
-    org.springframework.security.oauth2.server.authorization: DEBUG
-    org.springframework.security.oauth2.jwt: DEBUG
-    org.apache.coyote.http11: DEBUG

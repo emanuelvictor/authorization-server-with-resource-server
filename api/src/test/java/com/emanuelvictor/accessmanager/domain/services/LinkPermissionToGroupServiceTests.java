@@ -4,7 +4,7 @@ import com.emanuelvictor.SpringBootTests;
 import com.emanuelvictor.accessmanager.domain.entities.Group;
 import com.emanuelvictor.accessmanager.domain.entities.GroupPermission;
 import com.emanuelvictor.accessmanager.domain.entities.Permission;
-import com.emanuelvictor.common.domain.entities.PersistentEntity;
+import com.emanuelvictor.common.application.ports.secundaries.jpa.PersistentEntity;
 import com.emanuelvictor.accessmanager.domain.entity.GroupBuilder;
 import com.emanuelvictor.accessmanager.domain.entity.PermissionBuilder;
 import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.GroupPermissionRepository;

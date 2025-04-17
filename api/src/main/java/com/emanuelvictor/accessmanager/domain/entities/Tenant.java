@@ -1,17 +1,10 @@
 package com.emanuelvictor.accessmanager.domain.entities;
 
-import com.emanuelvictor.common.domain.entities.PersistentEntity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.emanuelvictor.common.application.ports.secundaries.jpa.PersistentEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Pattern.Flag;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Set;
 
 import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
 

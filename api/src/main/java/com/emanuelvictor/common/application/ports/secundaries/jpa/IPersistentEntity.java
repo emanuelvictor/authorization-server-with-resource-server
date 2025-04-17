@@ -1,4 +1,4 @@
-package com.emanuelvictor.common.domain.entities;
+package com.emanuelvictor.common.application.ports.secundaries.jpa;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
