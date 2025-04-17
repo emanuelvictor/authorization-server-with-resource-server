@@ -22,7 +22,7 @@ INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VA
 INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (60001, now(), 'root.access-manager.tenants.update', 'Alterar', 6000);
 INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (60002, now(), 'root.access-manager.tenants.read', 'Consultar', 6000);
 
-INSERT INTO "group"(id, created_on, name) values (1, now(), 'Root');
+INSERT INTO "group"(id, created_on, name, internal) values (1, now(), 'Root', true);
 
 INSERT INTO group_permission(id, created_on, group_permission_id, permission_id) values (1, now(), 1, 1);
 

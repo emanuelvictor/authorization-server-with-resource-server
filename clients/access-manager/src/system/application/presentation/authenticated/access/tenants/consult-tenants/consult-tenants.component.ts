@@ -111,7 +111,7 @@ export class ConsultTenantsComponent /*implements OnInit */ {
           this.tenantRepository.delete(tenant.id)
             .then(() => {
               this.listByFilters();
-              this.messageService.toastSuccess('Cliente excluído com sucesso')
+              this.messageService.toastSuccess('Tenant excluído com sucesso')
             });
         }
       });

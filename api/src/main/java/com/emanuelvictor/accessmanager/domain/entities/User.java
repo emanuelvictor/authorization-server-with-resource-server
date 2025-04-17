@@ -27,88 +27,49 @@ import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
 @Table(schema = DEFAULT_TENANT_ID, name = "user")
 public class User extends PersistentEntity implements UserDetails {
 
-    /**
-     *
-     */
     public static final String DEFAULT_PASSWORD = "!UserDefaultPassword0*";
 
-    /**
-     *
-     */
     @Column(nullable = false, length = 150, unique = true)
     private String username;
 
-    /**
-     *
-     */
     @NotBlank
     @Column(nullable = false, length = 100)
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@!%*#?&+,./])[A-Za-z\\d$@!%*#?&+,./]{8,}$", flags = Flag.UNICODE_CASE,
             message = "A senha deve conter ao menos 8 caracteres com letras, números e um caractere especial.")
     private String password;
 
-    /**
-     *
-     */
     @NotNull
     @Column(nullable = false)
     private Boolean enabled = true;
 
-    /**
-     *
-     */
     @NotNull
     @Column(nullable = false)
     private boolean locked;
 
-    /**
-     * TODO REMOVE
-     */
     @Column(nullable = false, length = 250)
     private String name;
 
-    /**
-     *
-     */
     @ManyToOne(optional = false)
     private Group group;
 
-    /**
-     *
-     */
     @ManyToOne
     private Tenant tenant;
 
-    /**
-     *
-     */
     public User() {
     }
 
-    /**
-     * @return boolean
-     */
     public boolean isEnabled() {
         return this.enabled;
     }
 
-    /**
-     * @return boolean
-     */
     public boolean isAccountNonLocked() {
         return !locked;
     }
 
-    /**
-     * @return boolean
-     */
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    /**
-     * @return boolean
-     */
     public boolean isCredentialsNonExpired() {
         return true;
     }
@@ -116,8 +77,19 @@ public class User extends PersistentEntity implements UserDetails {
     @Transient
     private Set<Permission> authorities;
 
-
     public Long getGroupId() {
         return group.getId();
+    }
+
+    @Override
+    public void beforeInsert() {
+        super.beforeInsert();
+        this.username = this.username.replaceAll(" ", "_").trim();
+    }
+
+    @Override
+    public void beforeUpdate() {
+        super.beforeUpdate();
+        this.username = this.username.replaceAll(" ", "_").trim();
     }
 }

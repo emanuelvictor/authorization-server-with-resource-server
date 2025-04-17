@@ -19,7 +19,7 @@ export class TenantDataViewComponent implements OnInit {
 
     constructor(homeView: AuthenticatedViewComponent,
                 public activatedRoute: ActivatedRoute) {
-        homeView.toolbar.subhead = 'Cliente / Detalhes';
+        homeView.toolbar.subhead = 'Tenant / Detalhes';
     }
 
     async ngOnInit() {

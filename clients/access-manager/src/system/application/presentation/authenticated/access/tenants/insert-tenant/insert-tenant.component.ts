@@ -30,7 +30,7 @@ export class InsertTenantComponent {
                 private homeView: AuthenticatedViewComponent,
                 private tenantRepository: TenantRepository) {
 
-        homeView.toolbar.subhead = 'Cliente / Adicionar';
+        homeView.toolbar.subhead = 'Tenant / Adicionar';
 
     }
 

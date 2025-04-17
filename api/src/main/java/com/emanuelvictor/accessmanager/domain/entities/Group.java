@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -28,6 +29,10 @@ public class Group extends PersistentEntity {
     @Length(max = 50)
     @Column(nullable = false, unique = true, length = 50)
     private String name;
+
+    @NotNull
+    @Column(nullable = false)
+    private Boolean internal;
 
     public Group(Long id, String name) {
         super(id);

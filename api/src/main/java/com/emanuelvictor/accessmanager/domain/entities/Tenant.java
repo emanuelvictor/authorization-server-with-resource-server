@@ -19,21 +19,20 @@ import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
 @lombok.EqualsAndHashCode(callSuper = true)
 public class Tenant extends PersistentEntity {
 
-    /**
-     *
-     */
     @NotBlank
     @Length(max = 150)
     @Column(nullable = false, unique = true, length = 150, updatable = false)
     private String identification;
 
-    /**
-     *
-     */
     @Override
     public void beforeInsert() {
         super.beforeInsert();
-        this.identification = this.identification.replaceAll(" ", "_");
+        this.identification = this.identification.replaceAll(" ", "_").trim();
     }
 
+    @Override
+    public void beforeUpdate() {
+        super.beforeUpdate();
+        this.identification = this.identification.replaceAll(" ", "_").trim();
+    }
 }

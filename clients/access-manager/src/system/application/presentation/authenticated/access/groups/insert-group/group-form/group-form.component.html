@@ -1,6 +1,5 @@
 <form [formGroup]='form' (ngSubmit)='saveEntity(form)' novalidate>
 
-  <!--toolbar div-->
   <ng-content select='[toolbar]'></ng-content>
 
   <mat-card id='default-form'>
@@ -19,6 +18,13 @@
 
       <horizontal-space></horizontal-space>
 
+      <mat-checkbox [checked]='entity.internal'
+                    (change)='setChecked($event.checked)'
+                    style="display: flex; align-content: center; align-items: center; height: 50px;">
+        Grupo Interno
+      </mat-checkbox>
+
+      <horizontal-space></horizontal-space>
     </div>
 
   </mat-card>

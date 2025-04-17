@@ -44,9 +44,9 @@
     <vertical-space [verticalMargin]='5'></vertical-space>
 
     <mat-form-field flex style="display: block">
-      <mat-label>Cliente</mat-label>
+      <mat-label>Tenant</mat-label>
       <input formControlName='tenant'
-             placeholder='Cliente' name='tenant'
+             placeholder='Tenant' name='tenant'
              matInput [(ngModel)]='entity.tenant'
              (keyup)="debounce(this,listTenants)" id="tenant"
              [matAutocomplete]='auto' (blur)='normalizeTenant()'>

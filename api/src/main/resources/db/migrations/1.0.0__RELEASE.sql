@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS "group" (
                                      id bigint NOT NULL,
+                                     internal boolean NOT NULL,
                                      created_on timestamp without time zone NOT NULL,
                                      updated_on timestamp without time zone,
                                      name character varying(50) NOT NULL

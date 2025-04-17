@@ -1,4 +1,4 @@
-package com.emanuelvictor.accessmanager.infrastructure.navigation;
+package com.emanuelvictor.accessmanager.application.ports.primaries.navigation;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

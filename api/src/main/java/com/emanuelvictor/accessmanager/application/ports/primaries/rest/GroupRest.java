@@ -25,7 +25,7 @@ import java.util.Optional;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping({"api/access-manager/groups", "api/access-manager/access-groups"})
+@RequestMapping("api/access-manager/groups")
 public class GroupRest {
 
     private final GroupRepository groupRepository;

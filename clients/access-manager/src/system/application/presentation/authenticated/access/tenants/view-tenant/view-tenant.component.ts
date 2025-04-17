@@ -41,7 +41,7 @@ export class ViewTenantComponent implements OnInit {
                 private tenantRepository: TenantRepository) {
 
         this.tenant.id = +this.activatedRoute.snapshot.params.id || null;
-        homeView.toolbar.subhead = 'Cliente / Detalhes';
+        homeView.toolbar.subhead = 'Tenant / Detalhes';
 
     }
 
@@ -70,7 +70,7 @@ export class ViewTenantComponent implements OnInit {
      */
     public openDeleteDialog(tenant) {
 
-        this.dialogService.confirmDelete(tenant, 'Cliente')
+        this.dialogService.confirmDelete(tenant, 'Tenant')
             .then((accept: boolean) => {
 
                 if (accept) {
