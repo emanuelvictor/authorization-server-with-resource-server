@@ -1,0 +1,24 @@
+<form [formGroup]='form' (ngSubmit)='saveEntity(form)' novalidate>
+
+  <!--toolbar div-->
+  <ng-content select='[toolbar]'></ng-content>
+
+  <mat-card id='default-form'>
+    <div layout='row'>
+
+      <mat-form-field flex>
+        <mat-label>Identificação</mat-label>
+        <input formControlName='identification'
+               matInput placeholder='Identificação'
+               required id='identification' name='identification'
+               [(ngModel)]='entity.identification' maxlength='150'/>
+        <mat-error>
+          Esse campo é obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <horizontal-space></horizontal-space>
+
+    </div>
+  </mat-card>
+</form>

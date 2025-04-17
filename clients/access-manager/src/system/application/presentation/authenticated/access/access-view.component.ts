@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 
 // @ts-ignore
 @Component({
-  selector: 'configurations-view', /// TODO deve ser access view
+  selector: 'access-view',
   templateUrl: './access-view.component.html',
   styleUrls: ['./access-view.component.scss']
 })
@@ -22,7 +22,7 @@ export class AccessViewComponent extends DefaultCanActivate {
 
     this.fallbackRoute = 'minha-conta';
 
-    this.permissions = ['root', 'users', 'users/get', 'groups', 'groups/get']
+    this.permissions = ['root', 'users', 'users/get', 'groups', 'groups/get', 'tenants/get']
 
   }
 }

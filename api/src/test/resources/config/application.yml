@@ -15,7 +15,7 @@ spring:
     hibernate:
       ddl-auto: validate
       naming:
-        implicit-strategy: com.emanuelvictor.common.infrastructure.fk.CustomNamingStrategy
+        implicit-strategy: com.emanuelvictor.common.infrastructure.hibernate.function.CustomNamingStrategy
     show-sql: true
     open-in-view: false
     properties:

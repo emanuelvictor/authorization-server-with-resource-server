@@ -1,6 +1,6 @@
 package com.emanuelvictor.accessmanager.domain.entities;
 
-import com.emanuelvictor.accessmanager.domain.entities.generic.PersistentEntity;
+import com.emanuelvictor.common.domain.entities.PersistentEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,7 +24,7 @@ import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
 @Entity
 @JsonIgnoreProperties({"authorities"})
 @lombok.EqualsAndHashCode(callSuper = true)
-@Table(schema = DEFAULT_TENANT_ID, name = "\"user\"")
+@Table(schema = DEFAULT_TENANT_ID, name = "user")
 public class User extends PersistentEntity implements UserDetails {
 
     /**
@@ -68,10 +68,16 @@ public class User extends PersistentEntity implements UserDetails {
     private String name;
 
     /**
-     * d
+     *
      */
     @ManyToOne(optional = false)
     private Group group;
+
+    /**
+     *
+     */
+    @ManyToOne
+    private Tenant tenant;
 
     /**
      *

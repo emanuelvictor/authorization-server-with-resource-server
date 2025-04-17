@@ -23,28 +23,6 @@
       </mat-error>
     </mat-form-field>
 
-    <!--    <mat-form-field flex style="display: block">-->
-    <!--      <mat-label>E-mail</mat-label>-->
-    <!--      <mat-autocomplete #auto='matAutocomplete' [displayWith]='displayFn'>-->
-    <!--        <ng-container *ngIf='users?.length'>-->
-    <!--          <mat-option *ngFor='let user of users' [value]='user.username' (click)='getEmail()'>-->
-    <!--            <span>{{ user?.name }} ({{user?.username }})</span>-->
-    <!--          </mat-option>-->
-    <!--        </ng-container>-->
-    <!--      </mat-autocomplete>-->
-    <!--      <input [matAutocomplete]='auto' name='username' id='username'-->
-    <!--             formControlName='username' maxlength='150' required-->
-    <!--             pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$'-->
-    <!--             (keyup)='getEmail()' [(ngModel)]='entity.username' matInput placeholder='E-mail'>-->
-
-    <!--      <mat-error *ngIf="form.controls['username'].hasError('pattern')">-->
-    <!--        E-mail inválido, utilize o formato "exemplo@username.com"-->
-    <!--      </mat-error>-->
-    <!--      <mat-error *ngIf="form.controls['username'].hasError('required')">-->
-    <!--        Esse campo é obrigatório-->
-    <!--      </mat-error>-->
-    <!--    </mat-form-field>-->
-
     <vertical-space [verticalMargin]='5'></vertical-space>
 
     <mat-form-field flex style="display: block">
@@ -62,5 +40,22 @@
 
     <root-form [(group)]='entity.group' flex [form]='form'>
     </root-form>
+
+    <vertical-space [verticalMargin]='5'></vertical-space>
+
+    <mat-form-field flex style="display: block">
+      <mat-label>Cliente</mat-label>
+      <input formControlName='tenant'
+             placeholder='Cliente' name='tenant'
+             matInput [(ngModel)]='entity.tenant'
+             (keyup)="debounce(this,listTenants)" id="tenant"
+             [matAutocomplete]='auto' (blur)='normalizeTenant()'>
+
+      <mat-autocomplete [displayWith]='displayIdentificationAccessGroup' #auto='matAutocomplete'>
+        <mat-option [value]='tenant' *ngFor='let tenant of tenants'>
+          {{ tenant.identification }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
   </mat-card>
 </form>

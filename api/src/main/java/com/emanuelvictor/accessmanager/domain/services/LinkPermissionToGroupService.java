@@ -3,9 +3,9 @@ package com.emanuelvictor.accessmanager.domain.services;
 import com.emanuelvictor.accessmanager.domain.entities.Group;
 import com.emanuelvictor.accessmanager.domain.entities.GroupPermission;
 import com.emanuelvictor.accessmanager.domain.entities.Permission;
-import com.emanuelvictor.accessmanager.domain.repositories.GroupPermissionRepository;
-import com.emanuelvictor.accessmanager.domain.repositories.GroupRepository;
-import com.emanuelvictor.accessmanager.domain.repositories.PermissionRepository;
+import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.GroupPermissionRepository;
+import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.GroupRepository;
+import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.PermissionRepository;
 
 /**
  * @author Emanuel Victor

@@ -1,16 +1,15 @@
 import {Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, Renderer} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MatSnackBar, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions} from '@angular/material';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions, MatSnackBar} from '@angular/material';
 import {AuthenticatedViewComponent} from '../../../../authenticated-view.component';
-import {MessageService} from '../../../../../../../domain/services/message.service';
 import {debounce} from "../../../../../../utils/debounce";
 import {FormBuilder, FormControl, Validators} from "@angular/forms"
-import {UserRepository} from "../../../../../../../domain/repository/user.repository";
 import {CrudViewComponent} from "../../../../../../controls/crud/crud-view.component";
 import {User} from "../../../../../../../domain/entity/user.model";
 import 'rxjs/add/operator/debounceTime';
-import {debounceTime, switchMap} from 'rxjs/operators';
 import {AuthenticationService} from "../../../../../../../domain/services/authentication.service";
+import {TenantRepository} from "../../../../../../../domain/repository/tenant.repository";
+import {Tenant} from "../../../../../../../domain/entity/tenant.model";
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -29,6 +28,8 @@ const appearance: MatFormFieldDefaultOptions = {
 })
 export class UserFormComponent extends CrudViewComponent implements OnInit {
 
+  tenants: any = [];
+
   @Input() entity: User = new User();
 
   @Output() save: EventEmitter<User> = new EventEmitter();
@@ -39,26 +40,9 @@ export class UserFormComponent extends CrudViewComponent implements OnInit {
 
   public debounce = debounce;
 
-  /**
-   *
-   * @param router
-   * @param snackBar
-   * @param homeView
-   * @param activatedRoute
-   * @param messageService
-   * @param userRepository
-   * @param element
-   * @param fb
-   * @param renderer
-   * @param authenticationService
-   * @param userRepository
-   */
-  constructor(private router: Router,
-              public snackBar: MatSnackBar,
+  constructor(public snackBar: MatSnackBar,
               public activatedRoute: ActivatedRoute,
-              private messageService: MessageService,
-              private userRepository: UserRepository,
-              private homeView: AuthenticatedViewComponent,
+              private tenantRepository: TenantRepository,
               @Inject(ElementRef) public element: ElementRef,
               public fb: FormBuilder, public renderer: Renderer,
               public authenticationService: AuthenticationService) {
@@ -67,70 +51,44 @@ export class UserFormComponent extends CrudViewComponent implements OnInit {
 
   }
 
-  /**
-   *
-   */
   ngOnInit() {
     this.entity.enable = true;
 
     this.form = this.fb.group({
       name: new FormControl({value: '', disabled: false}, Validators.required),
       username: ['username', [Validators.required/*, Validators.email*/]],
+      tenant: ['tenant', []],
     });
-
-    // this.form
-    //   .get('email')
-    //   .valueChanges
-    //   .pipe(
-    //     debounceTime(100),
-    //     switchMap(value =>
-    //       this.userRepository.findByLdapUsername((value as string))
-    //     )
-    //   )
-    //   .subscribe(user => {
-    //     if (user) {
-    //
-    //       this.users = [user];
-    //
-    //       if (this.form.get('email').value.includes('@')) {
-    //
-    //         this.entity.name = user.name;
-    //         this.form.controls['name'].disable();
-    //
-    //       } else
-    //
-    //         this.form.controls['name'].enable();
-    //
-    //     } else {
-    //
-    //       this.users = [];
-    //       this.form.controls['name'].enable();
-    //
-    //     }
-    //   });
-
   }
 
-  emit(entity: any) {
+  emit(entity: User) {
     this.save.emit(entity);
   }
 
-  // /**
-  //  *
-  //  */
-  // getEmail() {
-  //   this.entity.email = this.form.get('email').value;
-  // }
-  //
-  // notFirst: boolean = false;
-  //
-  // /**
-  //  *
-  //  * @param email
-  //  */
-  // displayFn(email) {
-  //   if (this.notFirst)
-  //     return email;
-  //   else this.notFirst = true;
-  // }
+  public normalizeTenant() {
+    if (this.isString(this.entity.tenant)) {
+      this.entity.tenant = null;
+    }
+  }
+
+  public isString(value:any): boolean {
+    return typeof value === 'string';
+  }
+
+  public displayIdentificationAccessGroup(tenant: Tenant) {
+    return tenant && tenant.identification ? tenant.identification : null;
+  }
+
+  public listTenants() {
+    let identificationOfTenant = this.entity.tenant || null;
+    if (this.isString(identificationOfTenant) && !(identificationOfTenant as any).length) {
+      this.tenants = [];
+      return;
+    }
+
+    this.tenantRepository.listByFilters({defaultFilter: this.entity.tenant, ativoFilter: true})
+        .subscribe((result) => {
+          this.tenants = result.content;
+        });
+  }
 }

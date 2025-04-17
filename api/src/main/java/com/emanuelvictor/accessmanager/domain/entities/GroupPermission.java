@@ -1,6 +1,6 @@
 package com.emanuelvictor.accessmanager.domain.entities;
 
-import com.emanuelvictor.accessmanager.domain.entities.generic.PersistentEntity;
+import com.emanuelvictor.common.domain.entities.PersistentEntity;
 import lombok.*;
 
 import jakarta.persistence.*;

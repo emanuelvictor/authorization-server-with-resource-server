@@ -1,0 +1,20 @@
+<list-page [gender]="'M'"
+           [deletavel]='false'
+           [editavel]='false'
+           [desativavel]='false'
+           [hasAdvancedFilter]='false'
+           [columns]="columns"
+           [dataSource]="dataSource"
+           [headline]="'Configurações'"
+           [subhead]="'Clientes'"
+           (list)="listByFilters($event)"
+           [totalElements]="totalElements"
+           [pageSize]="pageSize"
+           [pageIndex]="pageIndex"
+           [rolesToAdd]="['root', 'tenants', 'tenants/post']"
+           [rolesToView]="['root', 'tenants', 'tenants/get']"
+           [rolesToEdit]="['root', 'tenants', 'tenants/put']"
+           [rolesToDelete]="['root', 'tenants', 'tenants/delete']"
+           (delete)="openDeleteDialog($event)"
+           [displayedColumns]="displayedColumns">
+</list-page>

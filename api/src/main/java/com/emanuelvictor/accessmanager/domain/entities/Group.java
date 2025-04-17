@@ -1,6 +1,6 @@
 package com.emanuelvictor.accessmanager.domain.entities;
 
-import com.emanuelvictor.accessmanager.domain.entities.generic.PersistentEntity;
+import com.emanuelvictor.common.domain.entities.PersistentEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

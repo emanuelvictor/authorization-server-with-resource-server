@@ -1,6 +1,9 @@
 package com.emanuelvictor.accessmanager.domain.repositories;
 
 import com.emanuelvictor.SpringBootTests;
+import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.GroupPermissionRepository;
+import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.GroupRepository;
+import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.PermissionRepository;
 import com.emanuelvictor.accessmanager.domain.entities.GroupPermission;
 import com.emanuelvictor.accessmanager.domain.entities.Permission;
 import com.emanuelvictor.accessmanager.domain.entity.AccessGroupPermissionBuilder;

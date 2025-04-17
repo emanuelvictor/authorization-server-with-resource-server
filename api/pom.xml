@@ -32,12 +32,6 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api -->
-        <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>4.1.0</version>
-        </dependency>
 
         <!--        database-->
         <dependency>

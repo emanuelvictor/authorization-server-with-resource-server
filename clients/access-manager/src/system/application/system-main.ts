@@ -1,7 +1,7 @@
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {enableProdMode} from '@angular/core';
 
-import {SystemModule} from '../domain/system.module';
+import {SystemModule} from './system.module';
 import {environment} from '../../environments/environment';
 
 import 'hammerjs';

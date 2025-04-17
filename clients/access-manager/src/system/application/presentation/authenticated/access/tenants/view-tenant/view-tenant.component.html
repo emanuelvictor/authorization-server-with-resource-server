@@ -1,0 +1,23 @@
+<div class='toolbar' layout='row' flex>
+  <div layout='column'>
+    <div class='headline' [innerHTML]="'Cliente / Detalhes'"></div>
+    <div class='subhead' [innerHTML]="'Cliente'"></div>
+  </div>
+  <div layout='row' layout-align='end center' flex>
+    <button mat-raised-button type='button' routerLink='../'>
+      <mat-icon>arrow_back</mat-icon>
+      <span>Voltar</span>
+    </button>
+  </div>
+</div>
+
+<mat-card>
+  <tenant-data-view [tenant]='tenant'>
+    <div tenantLabelIdentification layout="row" *ngIf='tenant?.identification'>
+      <div layout="column" flex>
+        <label class="title">Identificação:</label>
+        <label class="text">{{ tenant.identification }}</label>
+      </div>
+    </div>
+  </tenant-data-view>
+</mat-card>

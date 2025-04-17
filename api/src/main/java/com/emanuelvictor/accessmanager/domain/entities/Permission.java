@@ -1,7 +1,7 @@
 package com.emanuelvictor.accessmanager.domain.entities;
 
-import com.emanuelvictor.accessmanager.domain.entities.generic.EntityIdResolver;
-import com.emanuelvictor.accessmanager.domain.entities.generic.PersistentEntity;
+import com.emanuelvictor.common.domain.entities.EntityIdResolver;
+import com.emanuelvictor.common.domain.entities.PersistentEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

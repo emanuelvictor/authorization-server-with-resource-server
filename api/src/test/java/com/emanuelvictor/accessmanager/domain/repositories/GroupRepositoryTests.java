@@ -1,6 +1,7 @@
 package com.emanuelvictor.accessmanager.domain.repositories;
 
 import com.emanuelvictor.SpringBootTests;
+import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.GroupRepository;
 import com.emanuelvictor.accessmanager.domain.entities.Group;
 import com.emanuelvictor.accessmanager.domain.entity.GroupBuilder;
 import org.assertj.core.api.Assertions;

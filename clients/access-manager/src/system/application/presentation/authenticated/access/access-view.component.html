@@ -1,25 +1,26 @@
 <div layout='row' layout-align='center center' class='nav-menu'>
 
-  <a layout-margin routerLinkActive #rlaUsers='routerLinkActive' [ngClass]="{'menu-active': rlaUsers.isActive}"
-     routerLink='users' *hasPermission="['root', 'root.access-manager', 'root.access-manager.users', 'root.access-manager.users.read']; operation 'OR'">
-    Usuários
-  </a>
+    <a layout-margin routerLinkActive #rlaUsers='routerLinkActive' [ngClass]="{'menu-active': rlaUsers.isActive}"
+       routerLink='users'
+       *hasPermission="['root', 'root.access-manager', 'root.access-manager.users', 'root.access-manager.users.read']; operation 'OR'">
+        Usuários
+    </a>
 
-  <a class='ml-25' layout-margin routerLinkActive
-     [ngClass]="{'menu-active': rlaApplications.isActive}"
-     routerLink='applications' #rlaApplications='routerLinkActive'
-     *hasPermission="['root','root.access-manager', 'root.access-manager.applications', 'root.access-manager.applications.read']; operation 'OR'">
-    Aplicativos
-  </a>
+    <a class='ml-25' layout-margin routerLinkActive #rlaAccessGroups='routerLinkActive'
+       [ngClass]="{'menu-active': rlaAccessGroups.isActive}" routerLink='groups'
+       *hasPermission="['root', 'root.access-manager', 'root.access-manager.groups', 'root.access-manager.groups.read']; operation 'OR'">
+        Grupos de Acesso
+    </a>
 
-  <a class='ml-25' layout-margin routerLinkActive #rlaAccessGroups='routerLinkActive'
-     [ngClass]="{'menu-active': rlaAccessGroups.isActive}" routerLink='groups'
-     *hasPermission="['root', 'root.access-manager', 'root.access-manager.groups', 'root.access-manager.groups.read']; operation 'OR'">
-    Grupos de Acesso
-  </a>
+    <a class='ml-25' layout-margin routerLinkActive
+       [ngClass]="{'menu-active': rlaApplications.isActive}"
+       routerLink='tenants' #rlaApplications='routerLinkActive'
+       *hasPermission="['root','root.access-manager', 'root.access-manager.tenants', 'root.access-manager.tenants.read']; operation 'OR'">
+        Tenants
+    </a>
 
 </div>
 
 <div class='main-content'>
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </div>
