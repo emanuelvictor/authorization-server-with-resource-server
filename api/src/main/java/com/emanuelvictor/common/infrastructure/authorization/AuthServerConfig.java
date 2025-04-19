@@ -1,9 +1,8 @@
 package com.emanuelvictor.common.infrastructure.authorization;
 
-import com.emanuelvictor.accessmanager.domain.entities.GroupPermission;
 import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.GroupPermissionRepository;
 import com.emanuelvictor.accessmanager.application.ports.secundaries.jpa.UserRepository;
-import com.emanuelvictor.accessmanager.domain.entities.Tenant;
+import com.emanuelvictor.accessmanager.domain.entities.GroupPermission;
 import com.emanuelvictor.accessmanager.domain.entities.User;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;

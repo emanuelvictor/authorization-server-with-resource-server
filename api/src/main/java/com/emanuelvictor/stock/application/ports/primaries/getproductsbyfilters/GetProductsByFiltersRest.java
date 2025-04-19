@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class GetProductsByFiltersRest {
 
-    private final ProductJPARepository productJPARepository;
+    private final ProductJPARepository productJPARepository; // TODO deve chamar o domain mesmo
 
     @GetMapping("api/products")
     @Transactional(readOnly = true)

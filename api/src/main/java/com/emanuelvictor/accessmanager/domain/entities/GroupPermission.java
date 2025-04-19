@@ -5,7 +5,7 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
-import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
+import static com.emanuelvictor.Main.DEFAULT_TENANT_IDENTIFICATION;
 
 /**
  * @author Emanuel Victor
@@ -16,7 +16,7 @@ import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table(schema = DEFAULT_TENANT_ID, uniqueConstraints = {
+@Table(schema = DEFAULT_TENANT_IDENTIFICATION, uniqueConstraints = {
         @UniqueConstraint(columnNames = {"group_id", "permission_id"})
 })
 public class GroupPermission extends PersistentEntity {

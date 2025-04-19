@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
-import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
+import static com.emanuelvictor.Main.DEFAULT_TENANT_IDENTIFICATION;
 
 
 /**
@@ -21,7 +21,7 @@ import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(schema = DEFAULT_TENANT_ID)
+@Table(schema = DEFAULT_TENANT_IDENTIFICATION)
 @EqualsAndHashCode(callSuper = true)
 public class Group extends PersistentEntity {
 

@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Objects;
 
-import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
+import static com.emanuelvictor.Main.DEFAULT_TENANT_IDENTIFICATION;
 
 @Component
 @RequiredArgsConstructor
@@ -31,7 +31,7 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
     public Connection getConnection(final String tenantIdentifier) throws SQLException {
         final Connection connection = getAnyConnection();
         try {
-            connection.setSchema(Objects.requireNonNullElse(tenantIdentifier, DEFAULT_TENANT_ID));
+            connection.setSchema(Objects.requireNonNullElse(tenantIdentifier, DEFAULT_TENANT_IDENTIFICATION));
         } catch (SQLException e) {
             throw new RuntimeException("Problem setting schema to " + tenantIdentifier, e);
         }
@@ -40,7 +40,7 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
 
     @Override
     public void releaseConnection(String tenantIdentifier, Connection connection) throws SQLException {
-        connection.setSchema(DEFAULT_TENANT_ID);
+        connection.setSchema(DEFAULT_TENANT_IDENTIFICATION);
         releaseAnyConnection(connection);
     }
 

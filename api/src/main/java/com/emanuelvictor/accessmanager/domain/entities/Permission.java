@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 
-import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
+import static com.emanuelvictor.Main.DEFAULT_TENANT_IDENTIFICATION;
 
 
 /**
@@ -21,7 +21,7 @@ import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
  */
 @Entity
 @Getter
-@Table(schema = DEFAULT_TENANT_ID)
+@Table(schema = DEFAULT_TENANT_IDENTIFICATION)
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id",

@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Set;
 
-import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
+import static com.emanuelvictor.Main.DEFAULT_TENANT_IDENTIFICATION;
 
 /**
  * @author Emanuel Victor
@@ -24,7 +24,7 @@ import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
 @Entity
 @JsonIgnoreProperties({"authorities"})
 @lombok.EqualsAndHashCode(callSuper = true)
-@Table(schema = DEFAULT_TENANT_ID, name = "user")
+@Table(schema = DEFAULT_TENANT_IDENTIFICATION, name = "user")
 public class User extends PersistentEntity implements UserDetails {
 
     public static final String DEFAULT_PASSWORD = "!UserDefaultPassword0*";

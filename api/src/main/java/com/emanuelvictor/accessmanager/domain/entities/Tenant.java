@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
+import static com.emanuelvictor.Main.DEFAULT_TENANT_IDENTIFICATION;
 
 /**
  * @author Emanuel Victor
@@ -15,7 +15,7 @@ import static com.emanuelvictor.Main.DEFAULT_TENANT_ID;
  */
 @Data
 @Entity
-@Table(schema = DEFAULT_TENANT_ID)
+@Table(schema = DEFAULT_TENANT_IDENTIFICATION)
 @lombok.EqualsAndHashCode(callSuper = true)
 public class Tenant extends PersistentEntity {
 
