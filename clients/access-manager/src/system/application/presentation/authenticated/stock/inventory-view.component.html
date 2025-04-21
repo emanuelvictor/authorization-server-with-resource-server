@@ -1,0 +1,19 @@
+<div layout='row' layout-align='center center' class='nav-menu'>
+
+  <a [ngClass]="{'menu-active': rlaAccessGroups.isActive}" routerLink='products'
+     class='ml-25' layout-margin routerLinkActive #rlaAccessGroups='routerLinkActive'
+     *hasPermission="['root', 'root.stocks', 'root.stocks.products', 'root.stocks.products.read']; operation 'OR'">
+    Produtos
+  </a>
+
+  <a routerLink='stocks'
+     *hasPermission="['root', 'root.stocks', 'root.stocks.stocks', 'root.stocks.stocks.read']; operation 'OR'"
+     layout-margin routerLinkActive #rlaUsers='routerLinkActive' [ngClass]="{'menu-active': rlaUsers.isActive}">
+    Estoques
+  </a>
+
+</div>
+
+<div class='main-content'>
+  <router-outlet></router-outlet>
+</div>

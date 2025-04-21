@@ -8,13 +8,13 @@
       <mat-icon>arrow_back</mat-icon>
       <span>Voltar</span>
     </button>
-    <div [@fadeInOut] *hasPermission="['root', 'users/put/activate']; operation 'OR'">
+    <div [@fadeInOut] *hasPermission="['root', 'root.access-manager', 'root.access-manager.users', 'root.access-manager.users.update', 'root.access-manager.users.update.change-password']; operation 'OR'">
       <button *ngIf='!user?.internal' color='primary' class='ml-25' mat-raised-button (click)='updatePassword()'>
         <mat-icon>vpn_key</mat-icon>
         <span>Alterar senha</span>
       </button>
     </div>
-    <div *hasPermission="['root', 'users/put/activate']; operation 'OR'">
+    <div [@fadeInOut] *hasPermission="['root', 'root.access-manager', 'root.access-manager.users', 'root.access-manager.users.update', 'root.access-manager.users.update.activate']; operation 'OR'">
       <button mat-raised-button type='button' *ngIf='!itsMe' (click)='updateEnabled(user.id)' class='ml-25'
               [ngClass]="{'activate': !user.enabled, 'inactivate': user.enabled}">
         <mat-icon>{{ !user.enabled ? 'check' : 'block' }}</mat-icon>
@@ -22,7 +22,7 @@
       </button>
     </div>
     <a color='primary' routerLink='edit' class='ml-25' mat-raised-button type='button'
-       *hasPermission="['root', 'users/put']; operation 'OR'">
+       [@fadeInOut] *hasPermission="['root', 'root.access-manager', 'root.access-manager.users', 'root.access-manager.users.update']; operation 'OR'">
       <mat-icon>edit</mat-icon>
       <span>Editar</span>
     </a>

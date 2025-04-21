@@ -19,18 +19,23 @@
         <a style='margin-top: 8px; color: #003D6A'
            routerLinkActive mat-button hide-xs #rlaAccess='routerLinkActive'
            [ngClass]="{'menu-active': rlaAccess.isActive}" [routerLink]="'/access'"
-           *hasPermission="['root', 'root.access-manager','root.access-manager.users', 'root.access-manager.groups',
-            'root.access-manager.users.read', 'root.access-manager.groups.read']; operation 'OR'">
+           *hasPermission="['root',
+                            'root.access-manager',
+                            'root.access-manager.users', 'root.access-manager.users.read',
+                            'root.access-manager.groups', 'root.access-manager.groups.read',
+                            'root.access-manager.tenants', 'root.access-manager.tenants.read']; operation 'OR'">
           <mat-icon>tune</mat-icon>
           <span>Configurações</span>
         </a>
         <a style='margin-top: 8px; color: #003D6A'
            routerLinkActive mat-button hide-xs #rlaAccess='routerLinkActive'
-           [ngClass]="{'menu-active': rlaAccess.isActive}" [routerLink]="'/tenants'"
-           *hasPermission="['root', 'root.access-manager','root.access-manager.tenants',
-            'root.access-manager.tenants.read', 'root.access-manager.tenants.read']; operation 'OR'">
+           [ngClass]="{'menu-active': rlaAccess.isActive}" [routerLink]="'/stocks'"
+           *hasPermission="['root',
+                            'root.stocks',
+                            'root.stocks.products', 'root.stocks.products.read',
+                            'root.stocks.stocks', 'root.stocks.stocks.read']; operation 'OR'">
           <mat-icon>shop</mat-icon>
-          <span>ERP</span>
+          <span>Estoque</span>
         </a>
       </div>
     </div>
@@ -91,10 +96,27 @@
         <mat-list-item #rlaAccess='routerLinkActive' [routerLink]="'/access'"
                        class='menu-routers' (click)='sidenav.close()' routerLinkActive flex
                        [ngClass]="{'menu-active': rlaAccess.isActive}" mat-icon-button
-                       *hasPermission="['root', 'users', 'users/get', 'groups', 'groups/get']; operation 'OR'">
+                       *hasPermission="['root',
+                                        'root.access-manager',
+                                        'root.access-manager.users', 'root.access-manager.users.read',
+                                        'root.access-manager.groups', 'root.access-manager.groups.read',
+                                        'root.access-manager.tenants', 'root.access-manager.tenants.read']; operation 'OR'">
           <div layout='row' class="menu-item">
             <mat-icon>tune</mat-icon>
             <h3>Configurações</h3>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item #rlaAccess='routerLinkActive' [routerLink]="'/stocks'"
+                       class='menu-routers' (click)='sidenav.close()' routerLinkActive flex
+                       [ngClass]="{'menu-active': rlaAccess.isActive}" mat-icon-button
+                       *hasPermission="['root',
+                                        'root.stocks',
+                                        'root.stocks.products', 'root.stocks.products.read',
+                                        'root.stocks.stocks', 'root.stocks.stocks.read']; operation 'OR'">
+          <div layout='row' class="menu-item">
+            <mat-icon>shop</mat-icon>
+            <h3>Estoque</h3>
           </div>
         </mat-list-item>
 

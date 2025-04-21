@@ -25,8 +25,8 @@ public class TenantFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         try {
-            final var tenantId = extractTenantFromRequest(request);
-            TenantContext.setTenantIdentification(Objects.requireNonNullElse(tenantId, DEFAULT_TENANT_IDENTIFICATION));
+            final var tenantIdentification = extractTenantFromRequest(request);
+            TenantContext.setTenantIdentification(Objects.requireNonNullElse(tenantIdentification, DEFAULT_TENANT_IDENTIFICATION));
             filterChain.doFilter(request, response);
         } finally {
             TenantContext.clear();
@@ -39,9 +39,10 @@ public class TenantFilter extends OncePerRequestFilter {
             try {
                 final var token = bearerToken.substring(7);
                 final var jwt = jwtDecoder.decode(token);
-                if (jwt.getClaims().containsKey("tenant")) {
-                    return jwt.getClaim("tenant");
+                if (jwt.getClaims().containsKey("tenantIdentification")) {
+                    return jwt.getClaim("tenantIdentification");
                 }
+                return request.getHeader("TenantIdentification");
             } catch (final JwtException e) {
                 logger.debug("Failed to decode JWT token", e);
             }

@@ -2,18 +2,19 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticatedViewComponent} from '../../../authenticated-view.component';
 import {MessageService} from '../../../../../../domain/services/message.service';
-import {TenantRepository} from "../../../../../../domain/repository/tenant.repository";
+import {ProductRepository} from "../../../../../../domain/repository/product.repository";
 import {DialogService} from "../../../../../../domain/services/dialog.service";
-import {Tenant} from "../../../../../../domain/entity/tenant.model";
+import {Product} from "../../../../../../domain/entity/product.model";
+import {PermissionRepository} from "../../../../../../domain/repository/permission.repository";
 import {Permission} from "../../../../../../domain/entity/permission.model";
-import {AuthenticationService} from "../../../../../../domain/services/authentication.service";
 
+// @ts-ignore
 @Component({
-  selector: 'view-tenants',
-  templateUrl: 'view-tenant.component.html',
-  styleUrls: ['../tenants.component.scss']
+  selector: 'view-products',
+  templateUrl: 'view-product.component.html',
+  styleUrls: ['../products.component.scss']
 })
-export class ViewTenantComponent implements OnInit {
+export class ViewProductComponent implements OnInit {
 
   /**
    *
@@ -23,7 +24,7 @@ export class ViewTenantComponent implements OnInit {
   /**
    *
    */
-  tenant: Tenant = new Tenant();
+  product: Product = new Product();
 
   /**
    *
@@ -32,18 +33,17 @@ export class ViewTenantComponent implements OnInit {
    * @param dialogService
    * @param activatedRoute
    * @param messageService
-   * @param tenantRepository
+   * @param productRepository
    */
   constructor(private router: Router,
               private dialogService: DialogService,
               public activatedRoute: ActivatedRoute,
               private messageService: MessageService,
               private homeView: AuthenticatedViewComponent,
-              private tenantRepository: TenantRepository,
-              public authenticationService: AuthenticationService) {
+              private productRepository: ProductRepository) {
 
-    this.tenant.id = +this.activatedRoute.snapshot.params.id || null;
-    homeView.toolbar.subhead = 'Tenant / Detalhes';
+    this.product.id = +this.activatedRoute.snapshot.params.id || null;
+    homeView.toolbar.subhead = 'Produto / Detalhes';
 
   }
 
@@ -51,7 +51,7 @@ export class ViewTenantComponent implements OnInit {
    *
    */
   ngOnInit() {
-    if (this.tenant && this.tenant.id) {
+    if (this.product && this.product.id) {
       this.findById();
     }
   }
@@ -60,34 +60,28 @@ export class ViewTenantComponent implements OnInit {
    *
    */
   public findById() {
-    this.tenantRepository.findById(this.tenant.id)
+    this.productRepository.findById(this.product.id)
       .subscribe((result) => {
-        this.tenant = result;
+        this.product = result;
       })
   }
 
   /**
    * Função para confirmar a exclusão de um registro permanentemente
-   * @param tenant
+   * @param product
    */
-  public openDeleteDialog(tenant: Tenant) {
+  public openDeleteDialog(product: Product) {
 
-    this.dialogService.confirmDelete(tenant, 'Tenant')
+    this.dialogService.confirmDelete(product, 'Produto')
       .then((accept: boolean) => {
 
         if (accept) {
-          this.tenantRepository.delete(tenant.id)
+          this.productRepository.delete(product.id)
             .then(() => {
-              this.router.navigate(['access/tenants']);
+              this.router.navigate(['access/products']);
               this.messageService.toastSuccess('Registro excluído com sucesso')
             })
         }
       })
-  }
-
-  takeOverTenant() {
-    this.authenticationService.tenantIdentification = this.tenant.identification;
-    this.router.navigate(['access/tenants']);
-    this.messageService.toastSuccess('Tenant assumido')
   }
 }

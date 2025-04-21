@@ -5,11 +5,11 @@ import {Router} from "@angular/router";
 
 // @ts-ignore
 @Component({
-  selector: 'access-view',
-  templateUrl: './access-view.component.html',
-  styleUrls: ['./access-view.component.scss']
+  selector: 'inventory-view',
+  templateUrl: './inventory-view.component.html',
+  styleUrls: ['./inventory-view.component.scss']
 })
-export class AccessViewComponent extends DefaultCanActivate {
+export class InventoryViewComponent extends DefaultCanActivate {
 
   /**
    *

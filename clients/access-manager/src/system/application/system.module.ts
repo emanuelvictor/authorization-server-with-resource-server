@@ -89,7 +89,7 @@ import {
 } from "./presentation/authenticated/access/users/insert-user/user-form/root-form/root-form.component";
 import {
     UpdatePasswordDialogComponent
-} from "./presentation/authenticated/access/users/update-password-dialog.component";
+} from "./presentation/authenticated/access/users/update-user/update-password/update-password-dialog.component";
 import {
     UpdateUserComponent
 } from "./presentation/authenticated/access/users/update-user/update-user.component";
@@ -122,6 +122,25 @@ import {
     TenantDataViewComponent
 } from "./presentation/authenticated/access/tenants/view-tenant/tenant-data-view/tenant-data-view.component";
 import {TenantRepository} from "../domain/repository/tenant.repository";
+import {
+    ProductFormComponent
+} from "./presentation/authenticated/stock/products/insert-product/product-form/product-form.component";
+import {
+    UpdateProductComponent
+} from "./presentation/authenticated/stock/products/update-product/update-product.component";
+import {
+    InsertProductComponent
+} from "./presentation/authenticated/stock/products/insert-product/insert-product.component";
+import {
+    ConsultProductsComponent
+} from "./presentation/authenticated/stock/products/consult-products/consult-products.component";
+import {ViewProductComponent} from "./presentation/authenticated/stock/products/view-product/view-product.component";
+import {
+    ProductDataViewComponent
+} from "./presentation/authenticated/stock/products/view-product/product-data-view/product-data-view.component";
+import {ProductRepository} from "../domain/repository/product.repository";
+import {ProductsViewComponent} from "./presentation/authenticated/stock/products/products-view.component";
+import {InventoryViewComponent} from "./presentation/authenticated/stock/inventory-view.component";
 
 const appearance: MatFormFieldDefaultOptions = {
     appearance: 'outline'
@@ -185,6 +204,16 @@ export function customTranslateLoader(http: HttpClient) {
         ViewGroupComponent,
         GroupsViewComponent,
         AccessGroupDataViewComponent,
+
+        // Inventário
+        InventoryViewComponent,
+        ProductFormComponent,
+        UpdateProductComponent,
+        InsertProductComponent,
+        ConsultProductsComponent,
+        ViewProductComponent,
+        ProductsViewComponent,
+        ProductDataViewComponent,
 
         // Tenants
         TenantFormComponent,
@@ -251,6 +280,7 @@ export function customTranslateLoader(http: HttpClient) {
         GroupRepository,
         TenantRepository,
         AccessGroupPermissionRepository,
+        ProductRepository,
 
         // Services
         Describer,

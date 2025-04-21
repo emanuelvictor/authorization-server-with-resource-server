@@ -8,10 +8,10 @@
            [totalElements]="totalElements"
            [pageSize]="pageSize"
            [pageIndex]="pageIndex"
-           [rolesToAdd]="['root', 'users', 'users/post']"
-           [rolesToView]="['root', 'users', 'users/get']"
-           [rolesToEdit]="['root', 'users', 'users/put']"
-           [rolesToDelete]="['root', 'users', 'users/delete']"
+           [rolesToAdd]="['root', 'root.access-manager', 'root.access-manager.users', 'root.access-manager.users.create']"
+           [rolesToView]="['root', 'root.access-manager', 'root.access-manager.users', 'root.access-manager.users.read']"
+           [rolesToEdit]="['root', 'root.access-manager', 'root.access-manager.users', 'root.access-manager.users.update']"
+           [rolesToDelete]="['root', 'root.access-manager', 'root.access-manager.users', 'root.access-manager.users.delete']"
            (delete)="openDeleteDialog($event)"
            [displayedColumns]="displayedColumns">
 </list-page>

@@ -8,7 +8,9 @@ import {TranslateService} from '@ngx-translate/core';
 import {AuthenticationService} from "../../../domain/services/authentication.service";
 import {User} from "../../../domain/entity/user.model";
 import {UserRepository} from "../../../domain/repository/user.repository";
-import {UpdatePasswordDialogComponent} from "./access/users/update-password-dialog.component";
+import {
+  UpdatePasswordDialogComponent
+} from "./access/users/update-user/update-password/update-password-dialog.component";
 
 // @ts-ignore
 @Component({

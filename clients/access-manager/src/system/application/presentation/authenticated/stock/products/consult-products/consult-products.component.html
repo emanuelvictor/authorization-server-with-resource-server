@@ -1,0 +1,21 @@
+<list-page [gender]="'M'"
+           [editavel]='true'
+           [deletavel]='true'
+           [desativavel]='false'
+           [hasAdvancedFilter]='false'
+           [columns]="columns"
+           [dataSource]="dataSource"
+           [headline]="'Estoque'"
+           [subhead]="'Produtos'"
+           (list)="listByFilters($event)"
+           [totalElements]="totalElements"
+           [pageSize]="pageSize"
+           [pageIndex]="pageIndex"
+           [rolesToAdd]="['root', 'root.stocks', 'root.stocks.products', 'root.stocks.products.create']"
+           [rolesToView]="['root', 'root.stocks', 'root.stocks.products', 'root.stocks.products.read']"
+           [rolesToEdit]="['root', 'root.stocks', 'root.stocks.products', 'root.stocks.products.update']"
+           [rolesToDelete]="['root', 'root.stocks', 'root.stocks.products', 'root.stocks.products.delete']"
+           (delete)="openDeleteDialog($event)"
+           [displayedColumns]="displayedColumns">
+</list-page>
+<!--todo FIX THIS PERMISSIONS-->

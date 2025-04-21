@@ -10,6 +10,11 @@ INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VA
 INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (400002, now(), 'root.access-manager.users.update.activate', 'Ativar/Desativar', 40001);
 INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (40003, now(), 'root.access-manager.users.delete', 'Remover', 4000);
 
+INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (11000, now(), 'root.access-manager.users.self-user', 'Próprio usuário', 4000);
+INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (110001, now(), 'root.access-manager.users.self-user.read', 'Consultar', 11000);
+INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (110002, now(), 'root.access-manager.users.self-user.update', 'Alterar', 11000);
+INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (1100021, now(), 'root.access-manager.users.self-user.update.change-password', 'Alterar senha', 110002);
+
 INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (5000, now(), 'root.access-manager.groups', 'Grupos de Acesso', 100);
 INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (50000, now(), 'root.access-manager.groups.create', 'Adicionar', 5000);
 INSERT INTO permission (id, created_on, authority, name, upper_permission_id) VALUES (50001, now(), 'root.access-manager.groups.update', 'Alterar', 5000);

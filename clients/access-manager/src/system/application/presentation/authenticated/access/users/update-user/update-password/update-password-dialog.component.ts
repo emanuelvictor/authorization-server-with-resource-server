@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {MessageService} from '../../../../../domain/services/message.service';
+import {MessageService} from '../../../../../../../domain/services/message.service';
 import {AbstractControl, FormBuilder, ValidatorFn, Validators} from "@angular/forms"
-import {UserRepository} from "../../../../../domain/repository/user.repository";
+import {UserRepository} from "../../../../../../../domain/repository/user.repository";
 
 // @ts-ignore
 @Component({

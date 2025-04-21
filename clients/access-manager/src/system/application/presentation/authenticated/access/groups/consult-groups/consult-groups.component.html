@@ -10,10 +10,10 @@
            [totalElements]="totalElements"
            [pageSize]="pageSize"
            [pageIndex]="pageIndex"
-           [rolesToAdd]="['root', 'groups', 'groups/post']"
-           [rolesToView]="['root', 'groups', 'groups/get']"
-           [rolesToEdit]="['root', 'groups', 'groups/put']"
-           [rolesToDelete]="['root', 'groups', 'groups/delete']"
+           [rolesToAdd]="['root', 'root.access-manager', 'root.access-manager.groups', 'root.access-manager.groups.create']"
+           [rolesToView]="['root', 'root.access-manager', 'root.access-manager.groups', 'root.access-manager.groups.read']"
+           [rolesToEdit]="['root', 'root.access-manager', 'root.access-manager.groups', 'root.access-manager.groups.update']"
+           [rolesToDelete]="['root', 'root.access-manager', 'root.access-manager.groups', 'root.access-manager.groups.delete']"
            (delete)="openDeleteDialog($event)"
            [displayedColumns]="displayedColumns">
 </list-page>

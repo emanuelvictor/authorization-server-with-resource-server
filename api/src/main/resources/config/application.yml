@@ -53,16 +53,16 @@ spring:
 
 logging:
   level:
-    root: INFO
-    org.hibernate: INFO
-    org.springframework: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.context.support: INFO
-    org.springframework.security.oauth2: INFO
-    org.springframework.security.oauth2.server.authorization: INFO
-    org.springframework.security.oauth2.jwt: INFO
-    org.apache.coyote.http11: INFO
+    root: DEBUG
+    org.hibernate: DEBUG
+    org.springframework: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.context.support: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    org.springframework.security.oauth2.server.authorization: DEBUG
+    org.springframework.security.oauth2.jwt: DEBUG
+    org.apache.coyote.http11: DEBUG
 
 info:
   name: erp

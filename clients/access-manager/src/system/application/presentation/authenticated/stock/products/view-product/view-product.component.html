@@ -1,0 +1,37 @@
+<div class='toolbar' layout='row' flex>
+  <div layout='column'>
+    <div class='headline' [innerHTML]="'Produto / Detalhes'"></div>
+    <div class='subhead' [innerHTML]="'Produto'"></div>
+  </div>
+  <div layout='row' layout-align='end center' flex>
+    <button mat-raised-button type='button' routerLink='../'>
+      <mat-icon>arrow_back</mat-icon>
+      <span>Voltar</span>
+    </button>
+    <button class='ml-25'
+            mat-raised-button
+            type='button' color='warn'
+            (click)='openDeleteDialog(product)'>
+      <mat-icon>delete_forever</mat-icon>
+      <span>Excluir</span>
+    </button>
+    <a class='ml-25'
+       mat-raised-button
+       [routerLink]="'edit'"
+       type='button' color='primary'>
+      <mat-icon>edit</mat-icon>
+      <span>Editar</span>
+    </a>
+  </div>
+</div>
+
+<mat-card>
+  <access-product-data-view [product]='product'>
+    <div productLabelName layout="row" *ngIf='product?.name'>
+      <div layout="column" flex>
+        <label class="title">Nome:</label>
+        <label class="text">{{ product.name }}</label>
+      </div>
+    </div>
+  </access-product-data-view>
+</mat-card>

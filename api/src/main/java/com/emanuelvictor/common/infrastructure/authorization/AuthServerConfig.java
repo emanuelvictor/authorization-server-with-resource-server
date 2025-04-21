@@ -108,7 +108,7 @@ public class AuthServerConfig {
                             .collect(Collectors.collectingAndThen(Collectors.toSet(), Collections::unmodifiableSet));
                     claims.put("authorities", authorities);
                     if (((User) context.getPrincipal().getPrincipal()).getTenant() != null)
-                        claims.put("tenant", ((User) context.getPrincipal().getPrincipal()).getTenant().getIdentification());
+                        claims.put("tenantIdentification", ((User) context.getPrincipal().getPrincipal()).getTenant().getIdentification());
                 });
             }
         };
@@ -226,7 +226,7 @@ public class AuthServerConfig {
         // Deve liberar o cors somente em ambiente de desenvolvimento
         final CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-        configuration.setAllowedHeaders(Arrays.asList("access-control-allow-origin", "x-requested-with", "authorization", "Access-Control-Allow-Headers", "Access-Control-Allow-Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Origin", "Cache-Control", "Content-Type", "Authorization"));
+        configuration.setAllowedHeaders(Arrays.asList("access-control-allow-origin", "x-requested-with", "authorization", "Access-Control-Allow-Headers", "Access-Control-Allow-Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Origin", "Cache-Control", "Content-Type", "Authorization", "TenantIdentification"));
         configuration.setAllowedMethods(Arrays.asList("OPTIONS", "DELETE", "GET", "POST", "PATCH", "PUT"));
 
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

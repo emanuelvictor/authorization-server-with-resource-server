@@ -9,6 +9,12 @@
       <span>Voltar</span>
     </button>
   </div>
+  <div [@fadeInOut]>
+    <button color='primary' class='ml-25' mat-raised-button (click)='takeOverTenant()' disabled='{{authenticationService.tenantIdentification === tenant.identification}}'>
+      <mat-icon>vpn_key</mat-icon>
+      <span>{{ authenticationService.tenantIdentification === tenant.identification ? 'Tenant assumido' : 'Assumir tenant' }}</span>
+    </button>
+  </div>
 </div>
 
 <mat-card>

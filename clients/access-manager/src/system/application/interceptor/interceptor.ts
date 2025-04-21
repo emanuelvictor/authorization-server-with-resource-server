@@ -20,33 +20,27 @@ export class Interceptor implements HttpInterceptor {
    */
   progress = window['NProgress'];
 
-  /**
-   *
-   * @param authenticationService
-   * @param snackBar
-   * @param messageService
-   * @param router
-   */
   constructor(private messageService: MessageService,
-              private authenticationService: AuthenticationService,
-              private router: Router, private snackBar: MatSnackBar) {
+              private authenticationService: AuthenticationService) {
   }
 
-  /**
-   * Intercepta todas as requisições
-   * @param {HttpRequest<>} req
-   * @param {HttpHandler} next
-   * @returns {Observable<HttpEvent<>>}
-   */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.progress.start();
 
     if (this.authenticationService.access && this.authenticationService.access.access_token && req.url.indexOf('oauth2') <= 0)
-      req = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${this.authenticationService.access.access_token}`
-        }
-      });
+      if (this.authenticationService.tenantIdentification)
+        req = req.clone({
+          setHeaders: {
+            TenantIdentification: this.authenticationService.tenantIdentification,
+            Authorization: `Bearer ${this.authenticationService.access.access_token}`
+          }
+        });
+      else
+        req = req.clone({
+          setHeaders: {
+            Authorization: `Bearer ${this.authenticationService.access.access_token}`
+          }
+        });
 
     if (this.authenticationService.access && this.authenticationService.access.access_token && this.authenticationService.access.isInvalidAccessToken && req.url.indexOf('oauth2') <= 0) {
       return this.authenticationService.getAccessTokenByRefreshToken(this.authenticationService.access.refresh_token)
@@ -71,7 +65,6 @@ export class Interceptor implements HttpInterceptor {
 
   /**
    * Função privada, captura os erros
-   * @returns {(res: any) => ErrorObservable}
    */
   private catchErrors() {
     /**
@@ -80,7 +73,6 @@ export class Interceptor implements HttpInterceptor {
     this.progress.done();
 
     return (res: any) => {
-
       if (res.error) {
 
         // Invalid refresh token handler
@@ -108,18 +100,14 @@ export class Interceptor implements HttpInterceptor {
 
       }
 
-      if(res.status === 403)
+      if (res.status === 403)
         this.error('Acesso negado!')
 
       return this.innerHandler(res);
     };
   }
 
-  /**
-   *
-   * @param res
-   */
-  private innerHandler(res): Observable<never> {
+  private innerHandler(res: any): Observable<never> {
 
     this.progress.done();
 
@@ -127,10 +115,6 @@ export class Interceptor implements HttpInterceptor {
 
   }
 
-  /**
-   *
-   * @param message
-   */
   public error(message: string) {
     this.messageService.toastError(message);
   }

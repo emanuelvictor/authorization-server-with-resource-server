@@ -15,7 +15,9 @@ import {GroupsViewComponent} from "./presentation/authenticated/access/groups/gr
 import {InsertGroupComponent} from "./presentation/authenticated/access/groups/insert-group/insert-group.component";
 import {UpdateGroupComponent} from "./presentation/authenticated/access/groups/update-group/update-group.component";
 import {ViewGroupComponent} from "./presentation/authenticated/access/groups/view-group/view-group.component";
-import {ConsultGroupsComponent} from "./presentation/authenticated/access/groups/consult-groups/consult-groups.component";
+import {
+  ConsultGroupsComponent
+} from "./presentation/authenticated/access/groups/consult-groups/consult-groups.component";
 import {TenantsViewComponent} from "./presentation/authenticated/access/tenants/tenants-view.component";
 import {
   ConsultTenantsComponent
@@ -26,6 +28,18 @@ import {
 import {
   ViewTenantComponent
 } from "./presentation/authenticated/access/tenants/view-tenant/view-tenant.component";
+import {ProductsViewComponent} from "./presentation/authenticated/stock/products/products-view.component";
+import {InventoryViewComponent} from "./presentation/authenticated/stock/inventory-view.component";
+import {
+  ConsultProductsComponent
+} from "./presentation/authenticated/stock/products/consult-products/consult-products.component";
+import {
+  InsertProductComponent
+} from "./presentation/authenticated/stock/products/insert-product/insert-product.component";
+import {
+  UpdateProductComponent
+} from "./presentation/authenticated/stock/products/update-product/update-product.component";
+import {ViewProductComponent} from "./presentation/authenticated/stock/products/view-product/view-product.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -74,6 +88,26 @@ const routes: Routes = [
               {path: '', component: ConsultTenantsComponent},
               {path: 'insert', component: InsertTenantComponent},
               {path: ':id', component: ViewTenantComponent}
+            ]
+          }
+        ]
+      },
+      {
+        path: 'stocks',
+        component: InventoryViewComponent,
+        children: [
+          {
+            path: '', redirectTo: 'products', pathMatch: 'full',
+          },
+          {
+            path: 'products', component: ProductsViewComponent,
+            children: [
+              {path: 'get', redirectTo: '', pathMatch: 'full'},
+              {path: '', component: ConsultProductsComponent},
+              {path: 'insert', component: InsertProductComponent},
+              {path: 'edit/:id', component: UpdateProductComponent},
+              {path: ':id/edit', component: UpdateProductComponent},
+              {path: ':id', component: ViewProductComponent}
             ]
           }
         ]
