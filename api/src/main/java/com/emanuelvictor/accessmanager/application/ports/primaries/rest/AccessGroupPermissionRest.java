@@ -43,6 +43,7 @@ public class AccessGroupPermissionRest {
         return accessGroupPermissionRepository.listByFilters(groupId, authority, pageable);
     }
 
+
     /**
      * @param groupId long
      * @return Page<GroupPermission>
