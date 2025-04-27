@@ -11,7 +11,7 @@ public final class GroupBuilder {
     private String name = UUID.randomUUID().toString();
 
     public Group build() {
-        return new Group(id, name);
+        return new Group(id, name, true);
     }
 
     public GroupBuilder id(final Long id) {

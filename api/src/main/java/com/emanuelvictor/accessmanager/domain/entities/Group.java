@@ -34,9 +34,10 @@ public class Group extends PersistentEntity {
     @Column(nullable = false)
     private Boolean internal;
 
-    public Group(Long id, String name) {
+    public Group(Long id, String name, Boolean internal) {
         super(id);
         this.name = name;
+        this.internal = internal;
     }
 
 }

@@ -16,7 +16,7 @@ import java.util.Collections;
 @AutoConfigureMockMvc
 @Sql("/datasets/truncate_all_tables.sql")
 @DisplayNameGeneration(SpringBootTests.HandlerCamelCaseNameFromClasses.class)
-public abstract class SpringBootTests {
+public class SpringBootTests {
 
     public SpringBootTests() {
         final GenericContainer<?> postgres = new GenericContainer<>(DockerImageName.parse("postgres:13.2-alpine"))
