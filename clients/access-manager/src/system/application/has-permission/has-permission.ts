@@ -26,7 +26,7 @@ export class HasPermissionDirective implements OnInit {
    * @param viewContainer
    * @param authenticationService
    */
-  constructor(private element: ElementRef,
+    constructor(private element: ElementRef,
               private templateRef: TemplateRef<any>,
               private viewContainer: ViewContainerRef,
               private authenticationService: AuthenticationService) {
