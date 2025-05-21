@@ -1,0 +1,41 @@
+{
+  "/static": {
+    "target": "http://127.0.0.1:8080/static",
+    "changeOrigin": true,
+    "secure": false,
+    "pathRewrite": {
+      "^/static": ""
+    },
+    "logLevel": "debug"
+  },
+
+  "/": {
+    "target": "http://127.0.0.1:8080/",
+    "changeOrigin": true,
+    "secure": false,
+    "pathRewrite": {
+      "^/": ""
+    },
+    "logLevel": "debug"
+  },
+
+  "/favicon.ico": {
+    "target": "http://127.0.0.1:8080/favicon.ico",
+    "changeOrigin": true,
+    "secure": false,
+    "pathRewrite": {
+      "^/favicon.ico": ""
+    },
+    "logLevel": "debug"
+  },
+
+  "/logout": {
+    "target": "http://127.0.0.1:8084/logout",
+    "changeOrigin": true,
+    "secure": false,
+    "pathRewrite": {
+      "^/logout": ""
+    },
+    "logLevel": "debug"
+  }
+}

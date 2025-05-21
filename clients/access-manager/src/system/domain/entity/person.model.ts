@@ -1,6 +1,6 @@
 import {Abstract} from './abstract/abstract.model';
 
-export class People extends Abstract {
+export class Person extends Abstract {
 
   /**
    *

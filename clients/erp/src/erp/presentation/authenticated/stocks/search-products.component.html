@@ -1,0 +1,7 @@
+<ul>
+    @for(product of pageOfProducts?.content; track product.name){
+    <li>{{product.name}}</li>
+    } @empty {
+    <li>Theres no products for this tenant</li>
+    }
+</ul>

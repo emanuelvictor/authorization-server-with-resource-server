@@ -1,7 +1,3 @@
-import {People} from './people.model';
-import {UserDetails} from "../../infrastructure/authentication/user-details";
-import {Group} from "./group.model";
-
 export class Token {
 
   /**

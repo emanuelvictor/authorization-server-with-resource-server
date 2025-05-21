@@ -10,7 +10,6 @@ export class Access extends User {
   private _scope: any;
   private _token_type: any;
 
-
   /**
    *
    * @param access

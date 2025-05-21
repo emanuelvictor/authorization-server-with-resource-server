@@ -1,19 +1,19 @@
-import {Person} from './person.model';
-import {UserDetails} from "../../infrastructure/authentication/user-details";
-import {Group} from "./group.model";
-import {Tenant} from "./tenant.model";
+// import {Group} from "./group.model";
+// import {Tenant} from "./tenant.model";
+import { Person } from './person';
+import { UserDetails } from "../../../common/domain/model/user-details";
 
 export class User extends Person implements UserDetails {
 
-  public email: string;
-  public password: string;
+  public email?: string;
+  public password?: string;
   public internal: boolean = false;
   public enable: boolean = true;
-  public group: Group;
+  // public group: Group;
   public root: boolean = false;
-  public username: string;
+  public username?: string;
   public authorities: any;
-  public tenant: Tenant;
+  // public tenant: Tenant;
 
   constructor(id?: number) {
     super();

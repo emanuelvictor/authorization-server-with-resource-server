@@ -1,78 +1,70 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
-  NavigationExtras,
-  Router,
-  RouterStateSnapshot
-} from "@angular/router";
-import {isNullOrUndefined} from "util";
-import {Observable} from "rxjs";
-import 'rxjs/add/operator/map';
-import {getParameterByName, parseJwt} from "../../application/utils/utils";
-import {Access} from "../../infrastructure/authentication/access";
-import {UserDetails} from "../../infrastructure/authentication/user-details";
-import {User} from "../entity/user.model";
-import {environment} from "../../../environments/environment";
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, NavigationExtras, Router, RouterStateSnapshot } from "@angular/router";
+import { map, Observable } from 'rxjs';
+import { UserDetails } from '../../../domain/model/user-details';
+import { environment } from '../../environments/environment';
+import { User } from '../../../../erp/domain/model/user';
+import { getParameterByName, parseJwt } from '../../../infrastructure/utils/utils';
+import { Access } from './access';
 
 @Injectable()
 export class AuthenticationService implements CanActivate, CanActivateChild {
 
   private origin = window.location.origin + window.location.pathname;
 
-  public user: User;
+  public user?: User;
 
-  public access: Access;
+  public access?: Access;
 
   /**
    * Represents the tenant identifier choice by ROOT user
    */
-  public tenantIdentification: string;
+  public tenantIdentification?: string;
+
+  /**
+   * Workarround to redirect in authorization code flow. Because for some motive the Angular 19 don't reset the url when do the router.navigate
+   */
+  private redirected = false;
 
   /**
    * Utilized for the transaction control.
    * This prevents the transaction from occurring twice.
    */
-  getPromiseLoggedUserInstance: Promise<UserDetails>;
+  getPromiseLoggedUserInstance?: Promise<UserDetails | undefined>;
 
   constructor(private router: Router, private http: HttpClient) {
   }
 
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return this.canActivate(route, state)
   }
 
-  canActivate(_: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.getObservedLoggedUser().map(auth => {
-      if (isNullOrUndefined(auth)) {
+  async canActivate(_: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    return this.getPromiseLoggedUser().then(auth => {
+      if (auth == null) {
         this.authorizationCode(state.url);
         return false
       } else {
         const stateReturned: string = getParameterByName('state');
-        if (stateReturned) {
-          this.router.navigate([stateReturned]).then(r => {
-          })
+        if (!this.redirected) {
+          if (stateReturned) {
+            this.router.navigate([stateReturned]).then(r => {
+            })
+          }
+          this.redirected = true;
         }
         return true
       }
     })
   }
 
-  public getObservedLoggedUser(): Observable<UserDetails> {
-    return new Observable(observer => {
-      this.getPromiseLoggedUser().then(result => observer.next(result)).catch(err => observer.error(err))
-    })
-  }
-
-  public getPromiseLoggedUser(): Promise<UserDetails> {
-    this.getPromiseLoggedUserInstance = this.getPromiseLoggedUserInstance ? this.getPromiseLoggedUserInstance : new Promise<UserDetails>((resolve, reject) => {
-
+  public getPromiseLoggedUser(): Promise<UserDetails | undefined> {
+    this.getPromiseLoggedUserInstance = this.getPromiseLoggedUserInstance ? this.getPromiseLoggedUserInstance : new Promise<UserDetails | undefined>((resolve, reject) => {
       const authorizationCode: string = getParameterByName('code');
-      if (this.access && this.access.isInvalidAccessToken) { // Have the access token and it is invalid, but have the refresh token, get the access token by refresh token
+      if (this.access && this.access.isInvalidAccessToken()) { // Have the access token and it is invalid, but have the refresh token, get the access token by refresh token
 
-        this.getAccessTokenByRefreshToken(this.access.refresh_token).subscribe(result => {
+        this.getAccessTokenByRefreshToken(this.access.refresh_token).subscribe((result: any) => {
           this.access = new Access(result);
           this.user = AuthenticationService.extractUserFromAccessToken(this.access);
           resolve(this.user)
@@ -80,7 +72,7 @@ export class AuthenticationService implements CanActivate, CanActivateChild {
 
       } else if (!this.access && !authorizationCode) { // No have access token and no have code, must return null and redirect to SSO
 
-        resolve(null)
+        resolve(undefined)
 
       } else if ((!this.access || !this.access.access_token) && authorizationCode) { // No have access token but have code, must get the access token by authorization code.
 
@@ -101,22 +93,21 @@ export class AuthenticationService implements CanActivate, CanActivateChild {
     return this.getPromiseLoggedUserInstance
   }
 
-  public getAccessTokenByAuthorizationCode(authorizationCode: string): Promise<Access> {
+  public getAccessTokenByAuthorizationCode(authorizationCode: string): Promise<Access | undefined> {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
     const body = `grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${this.origin}&client_id=browser&client_secret=browser`;
-    return this.http.post<Access>(`${environment.SSO}/oauth2/token`, body, {headers}).toPromise();
+    return this.http.post<Access>(`${environment.SSO}/oauth2/token`, body, { headers }).toPromise();
   }
 
-  public getAccessTokenByRefreshToken(refreshToken: string): Observable<Access> { // TODO must return a promise too
+  public getAccessTokenByRefreshToken(refreshToken?: string): Observable<Access> { // TODO must return a promise too
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
     const body = `grant_type=refresh_token&refresh_token=${refreshToken}&client_id=browser&client_secret=browser`;
-    return this.http.post<Access>(`${environment.SSO}/oauth2/token`, body, {headers});
+    return this.http.post<Access>(`${environment.SSO}/oauth2/token`, body, { headers });
   }
 
-  private static extractUserFromAccessToken(access: Access): User {
-
+  private static extractUserFromAccessToken(access: Access): User | undefined {
     if (access.access_token) {
       const userToParse = parseJwt(access.access_token);
 
@@ -129,7 +120,7 @@ export class AuthenticationService implements CanActivate, CanActivateChild {
       return user
     }
 
-    return null
+    return undefined
   }
 
   public logout(): void {

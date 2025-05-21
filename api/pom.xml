@@ -177,6 +177,32 @@
                 <version>${frontend-maven-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>npm-install-erp</id>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <nodeVersion>v20.18.3</nodeVersion>
+                            <arguments>install</arguments>
+                            <workingDirectory>${project.basedir}/../clients/erp</workingDirectory>
+                        </configuration>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                            <goal>npm</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>npm-run-build-erp</id>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>run build</arguments>
+                            <workingDirectory>${project.basedir}/../clients/erp</workingDirectory>
+                        </configuration>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
                         <id>npm-install-access-manager</id>
                         <phase>generate-resources</phase>
                         <configuration>
